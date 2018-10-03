@@ -1,0 +1,1947 @@
+[33mcommit 1466598e5c8dfe66d6775f9736968d5feda5af7e[m
+Author: jwalms4 <jwalms4@gmail.com>
+Date:   Sat Nov 26 06:26:55 2016 -0500
+
+    Initial Commit
+
+[1mdiff --git a/.gitignore b/.gitignore[m
+[1mnew file mode 100644[m
+[1mindex 0000000..39fb081[m
+[1m--- /dev/null[m
+[1m+++ b/.gitignore[m
+[36m@@ -0,0 +1,9 @@[m
+[32m+[m[32m*.iml[m
+[32m+[m[32m.gradle[m
+[32m+[m[32m/local.properties[m
+[32m+[m[32m/.idea/workspace.xml[m
+[32m+[m[32m/.idea/libraries[m
+[32m+[m[32m.DS_Store[m
+[32m+[m[32m/build[m
+[32m+[m[32m/captures[m
+[32m+[m[32m.externalNativeBuild[m
+[1mdiff --git a/.idea/compiler.xml b/.idea/compiler.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..96cc43e[m
+[1m--- /dev/null[m
+[1m+++ b/.idea/compiler.xml[m
+[36m@@ -0,0 +1,22 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="UTF-8"?>[m
+[32m+[m[32m<project version="4">[m
+[32m+[m[32m  <component name="CompilerConfiguration">[m
+[32m+[m[32m    <resourceExtensions />[m
+[32m+[m[32m    <wildcardResourcePatterns>[m
+[32m+[m[32m      <entry name="!?*.java" />[m
+[32m+[m[32m      <entry name="!?*.form" />[m
+[32m+[m[32m      <entry name="!?*.class" />[m
+[32m+[m[32m      <entry name="!?*.groovy" />[m
+[32m+[m[32m      <entry name="!?*.scala" />[m
+[32m+[m[32m      <entry name="!?*.flex" />[m
+[32m+[m[32m      <entry name="!?*.kt" />[m
+[32m+[m[32m      <entry name="!?*.clj" />[m
+[32m+[m[32m      <entry name="!?*.aj" />[m
+[32m+[m[32m    </wildcardResourcePatterns>[m
+[32m+[m[32m    <annotationProcessing>[m
+[32m+[m[32m      <profile default="true" name="Default" enabled="false">[m
+[32m+[m[32m        <processorPath useClasspath="true" />[m
+[32m+[m[32m      </profile>[m
+[32m+[m[32m    </annotationProcessing>[m
+[32m+[m[32m  </component>[m
+[32m+[m[32m</project>[m
+\ No newline at end of file[m
+[1mdiff --git a/.idea/copyright/profiles_settings.xml b/.idea/copyright/profiles_settings.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e7bedf3[m
+[1m--- /dev/null[m
+[1m+++ b/.idea/copyright/profiles_settings.xml[m
+[36m@@ -0,0 +1,3 @@[m
+[32m+[m[32m<component name="CopyrightManager">[m
+[32m+[m[32m  <settings default="" />[m
+[32m+[m[32m</component>[m
+\ No newline at end of file[m
+[1mdiff --git a/.idea/encodings.xml b/.idea/encodings.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..97626ba[m
+[1m--- /dev/null[m
+[1m+++ b/.idea/encodings.xml[m
+[36m@@ -0,0 +1,6 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="UTF-8"?>[m
+[32m+[m[32m<project version="4">[m
+[32m+[m[32m  <component name="Encoding">[m
+[32m+[m[32m    <file url="PROJECT" charset="UTF-8" />[m
+[32m+[m[32m  </component>[m
+[32m+[m[32m</project>[m
+\ No newline at end of file[m
+[1mdiff --git a/.idea/gradle.xml b/.idea/gradle.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..fe72da5[m
+[1m--- /dev/null[m
+[1m+++ b/.idea/gradle.xml[m
+[36m@@ -0,0 +1,19 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="UTF-8"?>[m
+[32m+[m[32m<project version="4">[m
+[32m+[m[32m  <component name="GradleSettings">[m
+[32m+[m[32m    <option name="linkedExternalProjectsSettings">[m
+[32m+[m[32m      <GradleProjectSettings>[m
+[32m+[m[32m        <option name="distributionType" value="LOCAL" />[m
+[32m+[m[32m        <option name="externalProjectPath" value="$PROJECT_DIR$" />[m
+[32m+[m[32m        <option name="gradleHome" value="C:\Program Files\Android\Android Studio\gradle\gradle-2.14.1" />[m
+[32m+[m[32m        <option name="modules">[m
+[32m+[m[32m          <set>[m
+[32m+[m[32m            <option value="$PROJECT_DIR$" />[m
+[32m+[m[32m            <option value="$PROJECT_DIR$/app" />[m
+[32m+[m[32m          </set>[m
+[32m+[m[32m        </option>[m
+[32m+[m[32m        <option name="resolveModulePerSourceSet" value="false" />[m
+[32m+[m[32m      </GradleProjectSettings>[m
+[32m+[m[32m    </option>[m
+[32m+[m[32m  </component>[m
+[32m+[m[32m</project>[m
+\ No newline at end of file[m
+[1mdiff --git a/.idea/misc.xml b/.idea/misc.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..fbb6828[m
+[1m--- /dev/null[m
+[1m+++ b/.idea/misc.xml[m
+[36m@@ -0,0 +1,46 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="UTF-8"?>[m
+[32m+[m[32m<project version="4">[m
+[32m+[m[32m  <component name="EntryPointsManager">[m
+[32m+[m[32m    <entry_points version="2.0" />[m
+[32m+[m[32m  </component>[m
+[32m+[m[32m  <component name="NullableNotNullManager">[m
+[32m+[m[32m    <option name="myDefaultNullable" value="android.support.annotation.Nullable" />[m
+[32m+[m[32m    <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />[m
+[32m+[m[32m    <option name="myNullables">[m
+[32m+[m[32m      <value>[m
+[32m+[m[32m        <list size="4">[m
+[32m+[m[32m          <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.Nullable" />[m
+[32m+[m[32m          <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nullable" />[m
+[32m+[m[32m          <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.Nullable" />[m
+[32m+[m[32m          <item index="3" class="java.lang.String" itemvalue="android.support.annotation.Nullable" />[m
+[32m+[m[32m        </list>[m
+[32m+[m[32m      </value>[m
+[32m+[m[32m    </option>[m
+[32m+[m[32m    <option name="myNotNulls">[m
+[32m+[m[32m      <value>[m
+[32m+[m[32m        <list size="4">[m
+[32m+[m[32m          <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.NotNull" />[m
+[32m+[m[32m          <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nonnull" />[m
+[32m+[m[32m          <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.NonNull" />[m
+[32m+[m[32m          <item index="3" class="java.lang.String" itemvalue="android.support.annotation.NonNull" />[m
+[32m+[m[32m        </list>[m
+[32m+[m[32m      </value>[m
+[32m+[m[32m    </option>[m
+[32m+[m[32m  </component>[m
+[32m+[m[32m  <component name="ProjectLevelVcsManager" settingsEditedManually="false">[m
+[32m+[m[32m    <OptionsSetting value="true" id="Add" />[m
+[32m+[m[32m    <OptionsSetting value="true" id="Remove" />[m
+[32m+[m[32m    <OptionsSetting value="true" id="Checkout" />[m
+[32m+[m[32m    <OptionsSetting value="true" id="Update" />[m
+[32m+[m[32m    <OptionsSetting value="true" id="Status" />[m
+[32m+[m[32m    <OptionsSetting value="true" id="Edit" />[m
+[32m+[m[32m    <ConfirmationsSetting value="0" id="Add" />[m
+[32m+[m[32m    <ConfirmationsSetting value="0" id="Remove" />[m
+[32m+[m[32m  </component>[m
+[32m+[m[32m  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">[m
+[32m+[m[32m    <output url="file://$PROJECT_DIR$/build/classes" />[m
+[32m+[m[32m  </component>[m
+[32m+[m[32m  <component name="ProjectType">[m
+[32m+[m[32m    <option name="id" value="Android" />[m
+[32m+[m[32m  </component>[m
+[32m+[m[32m</project>[m
+\ No newline at end of file[m
+[1mdiff --git a/.idea/modules.xml b/.idea/modules.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..790804e[m
+[1m--- /dev/null[m
+[1m+++ b/.idea/modules.xml[m
+[36m@@ -0,0 +1,9 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="UTF-8"?>[m
+[32m+[m[32m<project version="4">[m
+[32m+[m[32m  <component name="ProjectModuleManager">[m
+[32m+[m[32m    <modules>[m
+[32m+[m[32m      <module fileurl="file://$PROJECT_DIR$/ProximityDetector.iml" filepath="$PROJECT_DIR$/ProximityDetector.iml" />[m
+[32m+[m[32m      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />[m
+[32m+[m[32m    </modules>[m
+[32m+[m[32m  </component>[m
+[32m+[m[32m</project>[m
+\ No newline at end of file[m
+[1mdiff --git a/.idea/runConfigurations.xml b/.idea/runConfigurations.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..7f68460[m
+[1m--- /dev/null[m
+[1m+++ b/.idea/runConfigurations.xml[m
+[36m@@ -0,0 +1,12 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="UTF-8"?>[m
+[32m+[m[32m<project version="4">[m
+[32m+[m[32m  <component name="RunConfigurationProducerService">[m
+[32m+[m[32m    <option name="ignoredProducers">[m
+[32m+[m[32m      <set>[m
+[32m+[m[32m        <option value="org.jetbrains.plugins.gradle.execution.test.runner.AllInPackageGradleConfigurationProducer" />[m
+[32m+[m[32m        <option value="org.jetbrains.plugins.gradle.execution.test.runner.TestClassGradleConfigurationProducer" />[m
+[32m+[m[32m        <option value="org.jetbrains.plugins.gradle.execution.test.runner.TestMethodGradleConfigurationProducer" />[m
+[32m+[m[32m      </set>[m
+[32m+[m[32m    </option>[m
+[32m+[m[32m  </component>[m
+[32m+[m[32m</project>[m
+\ No newline at end of file[m
+[1mdiff --git a/app/.gitignore b/app/.gitignore[m
+[1mnew file mode 100644[m
+[1mindex 0000000..796b96d[m
+[1m--- /dev/null[m
+[1m+++ b/app/.gitignore[m
+[36m@@ -0,0 +1 @@[m
+[32m+[m[32m/build[m
+[1mdiff --git a/app/build.gradle b/app/build.gradle[m
+[1mnew file mode 100644[m
+[1mindex 0000000..cbde45c[m
+[1m--- /dev/null[m
+[1m+++ b/app/build.gradle[m
+[36m@@ -0,0 +1,31 @@[m
+[32m+[m[32mapply plugin: 'com.android.application'[m
+[32m+[m
+[32m+[m[32mandroid {[m
+[32m+[m[32m    compileSdkVersion 23[m
+[32m+[m[32m    buildToolsVersion "23.0.3"[m
+[32m+[m[32m    defaultConfig {[m
+[32m+[m[32m        applicationId "com.wamsware.www.proximitydetector"[m
+[32m+[m[32m        minSdkVersion 15[m
+[32m+[m[32m        targetSdkVersion 23[m
+[32m+[m[32m        versionCode 1[m
+[32m+[m[32m        versionName "1.0"[m
+[32m+[m[32m        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"[m
+[32m+[m[32m    }[m
+[32m+[m[32m    buildTypes {[m
+[32m+[m[32m        release {[m
+[32m+[m[32m            minifyEnabled false[m
+[32m+[m[32m            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mdependencies {[m
+[32m+[m[32m    compile fileTree(dir: 'libs', include: ['*.jar'])[m
+[32m+[m[32m    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {[m
+[32m+[m[32m        exclude group: 'com.android.support', module: 'support-annotations'[m
+[32m+[m[32m    })[m
+[32m+[m[32m    compile 'com.android.support:appcompat-v7:23.4.0'[m
+[32m+[m[32m    compile 'com.android.support:design:23.4.0'[m
+[32m+[m[32m    compile 'com.google.android.gms:play-services-location:10.0.0'[m
+[32m+[m[32m    testCompile 'junit:junit:4.12'[m
+[32m+[m[32m}[m
+[1mdiff --git a/app/proguard-rules.pro b/app/proguard-rules.pro[m
+[1mnew file mode 100644[m
+[1mindex 0000000..ece51e9[m
+[1m--- /dev/null[m
+[1m+++ b/app/proguard-rules.pro[m
+[36m@@ -0,0 +1,17 @@[m
+[32m+[m[32m# Add project specific ProGuard rules here.[m
+[32m+[m[32m# By default, the flags in this file are appended to flags specified[m
+[32m+[m[32m# in C:\Users\jwalms4\AppData\Local\Android\Sdk/tools/proguard/proguard-android.txt[m
+[32m+[m[32m# You can edit the include path and order by changing the proguardFiles[m
+[32m+[m[32m# directive in build.gradle.[m
+[32m+[m[32m#[m
+[32m+[m[32m# For more details, see[m
+[32m+[m[32m#   http://developer.android.com/guide/developing/tools/proguard.html[m
+[32m+[m
+[32m+[m[32m# Add any project specific keep options here:[m
+[32m+[m
+[32m+[m[32m# If your project uses WebView with JS, uncomment the following[m
+[32m+[m[32m# and specify the fully qualified class name to the JavaScript interface[m
+[32m+[m[32m# class:[m
+[32m+[m[32m#-keepclassmembers class fqcn.of.javascript.interface.for.webview {[m
+[32m+[m[32m#   public *;[m
+[32m+[m[32m#}[m
+[1mdiff --git a/app/src/androidTest/java/com/wamsware/www/proximitydetector/ExampleInstrumentedTest.java b/app/src/androidTest/java/com/wamsware/www/proximitydetector/ExampleInstrumentedTest.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..4792967[m
+[1m--- /dev/null[m
+[1m+++ b/app/src/androidTest/java/com/wamsware/www/proximitydetector/ExampleInstrumentedTest.java[m
+[36m@@ -0,0 +1,26 @@[m
+[32m+[m[32mpackage com.wamsware.www.proximitydetector;[m
+[32m+[m
+[32m+[m[32mimport android.content.Context;[m
+[32m+[m[32mimport android.support.test.InstrumentationRegistry;[m
+[32m+[m[32mimport android.support.test.runner.AndroidJUnit4;[m
+[32m+[m
+[32m+[m[32mimport org.junit.Test;[m
+[32m+[m[32mimport org.junit.runner.RunWith;[m
+[32m+[m
+[32m+[m[32mimport static org.junit.Assert.*;[m
+[32m+[m
+[32m+[m[32m/**[m
+[32m+[m[32m * Instrumentation test, which will execute on an Android device.[m
+[32m+[m[32m *[m
+[32m+[m[32m * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>[m
+[32m+[m[32m */[m
+[32m+[m[32m@RunWith(AndroidJUnit4.class)[m
+[32m+[m[32mpublic class ExampleInstrumentedTest {[m
+[32m+[m[32m    @Test[m
+[32m+[m[32m    public void useAppContext() throws Exception {[m
+[32m+[m[32m        // Context of the app under test.[m
+[32m+[m[32m        Context appContext = InstrumentationRegistry.getTargetContext();[m
+[32m+[m
+[32m+[m[32m        assertEquals("com.wamsware.www.proximitydetector", appContext.getPackageName());[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[1mdiff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..82be8be[m
+[1m--- /dev/null[m
+[1m+++ b/app/src/main/AndroidManifest.xml[m
+[36m@@ -0,0 +1,26 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<manifest xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    package="com.wamsware.www.proximitydetector">[m
+[32m+[m
+[32m+[m[32m    <application[m
+[32m+[m[32m        android:allowBackup="true"[m
+[32m+[m[32m        android:icon="@mipmap/ic_launcher"[m
+[32m+[m[32m        android:label="@string/app_name"[m
+[32m+[m[32m        android:supportsRtl="true"[m
+[32m+[m[32m        android:theme="@style/AppTheme">[m
+[32m+[m[32m        <activity[m
+[32m+[m[32m            android:name=".ProxyAlertActivity"[m
+[32m+[m[32m            android:label="@string/app_name"[m
+[32m+[m[32m            android:theme="@style/AppTheme.NoActionBar">[m
+[32m+[m[32m            <intent-filter>[m
+[32m+[m[32m                <action android:name="android.intent.action.MAIN" />[m
+[32m+[m[32m                <category android:name="android.intent.category.LAUNCHER" />[m
+[32m+[m[32m            </intent-filter>[m
+[32m+[m[32m        </activity>[m
+[32m+[m[32m    </application>[m
+[32m+[m
+[32m+[m[32m    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />[m
+[32m+[m[32m    <!--<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->[m
+[32m+[m[32m    <uses-permission android:name="android.permission.VIBRATE" />[m
+[32m+[m
+[32m+[m[32m</manifest>[m
+\ No newline at end of file[m
+[1mdiff --git a/app/src/main/java/com/wamsware/www/proximitydetector/ProximityIntentReceiver.java b/app/src/main/java/com/wamsware/www/proximitydetector/ProximityIntentReceiver.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..0b928b3[m
+[1m--- /dev/null[m
+[1m+++ b/app/src/main/java/com/wamsware/www/proximitydetector/ProximityIntentReceiver.java[m
+[36m@@ -0,0 +1,54 @@[m
+[32m+[m[32mpackage com.wamsware.www.proximitydetector;[m
+[32m+[m
+[32m+[m[32mimport android.app.IntentService;[m
+[32m+[m[32mimport android.app.Notification;[m
+[32m+[m[32mimport android.app.NotificationManager;[m
+[32m+[m[32mimport android.app.PendingIntent;[m
+[32m+[m[32mimport android.content.BroadcastReceiver;[m
+[32m+[m[32mimport android.content.Context;[m
+[32m+[m[32mimport android.content.Intent;[m
+[32m+[m[32mimport android.graphics.Color;[m
+[32m+[m[32mimport android.location.LocationManager;[m
+[32m+[m[32mimport android.support.v4.app.NotificationCompat;[m
+[32m+[m[32mimport android.util.Log;[m
+[32m+[m
+[32m+[m[32mpublic class ProximityIntentReceiver extends BroadcastReceiver {[m
+[32m+[m
+[32m+[m[32m    private static final int NOTIFICATION_ID = 1000;[m
+[32m+[m
+[32m+[m[32m    static int counter = 0;[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    public void onReceive(Context context, Intent intent) {[m
+[32m+[m
+[32m+[m[32m        Boolean entering = intent.getBooleanExtra(LocationManager.KEY_PROXIMITY_ENTERING, false);[m
+[32m+[m
+[32m+[m[32m        String message = "";[m
+[32m+[m[32m        if (entering) {[m
+[32m+[m[32m            message = "You are moving nearer to your point of interest.";[m
+[32m+[m[32m        }[m
+[32m+[m[32m        else {[m
+[32m+[m[32m            message = "You are away from your point of interest.";[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        counter++;[m
+[32m+[m
+[32m+[m[32m        NotificationCompat.Builder notifBldr =[m
+[32m+[m[32m                new NotificationCompat.Builder(context)[m
+[32m+[m[32m                        .setSmallIcon(R.drawable.ic_apply_event)[m
+[32m+[m[32m                        .setContentTitle("Proximity Detector")[m
+[32m+[m[32m                        .setContentText(message + " " + String.valueOf(counter));[m
+[32m+[m
+[32m+[m[32m        NotificationManager notificationManager =[m
+[32m+[m[32m                (NotificationManager) context.getSystemService(IntentService.NOTIFICATION_SERVICE);[m
+[32m+[m
+[32m+[m[32m        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_ONE_SHOT);[m
+[32m+[m
+[32m+[m[32m        notifBldr.setContentIntent(pendingIntent);[m
+[32m+[m
+[32m+[m[32m        notificationManager.notify(NOTIFICATION_ID, notifBldr.build());[m
+[32m+[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m
+[32m+[m[32m}[m
+[1mdiff --git a/app/src/main/java/com/wamsware/www/proximitydetector/ProxyAlertActivity.java b/app/src/main/java/com/wamsware/www/proximitydetector/ProxyAlertActivity.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e1b4525[m
+[1m--- /dev/null[m
+[1m+++ b/app/src/main/java/com/wamsware/www/proximitydetector/ProxyAlertActivity.java[m
+[36m@@ -0,0 +1,651 @@[m
+[32m+[m[32mpackage com.wamsware.www.proximitydetector;[m
+[32m+[m
+[32m+[m[32mimport android.Manifest;[m
+[32m+[m[32mimport android.content.Context;[m
+[32m+[m[32mimport android.content.DialogInterface;[m
+[32m+[m[32mimport android.content.Intent;[m
+[32m+[m[32mimport android.content.IntentSender;[m
+[32m+[m[32mimport android.content.SharedPreferences;[m
+[32m+[m[32mimport android.content.pm.PackageManager;[m
+[32m+[m[32mimport android.location.Location;[m
+[32m+[m[32mimport android.location.LocationListener;[m
+[32m+[m[32mimport android.os.Bundle;[m
+[32m+[m[32mimport android.support.annotation.NonNull;[m
+[32m+[m[32mimport android.support.annotation.Nullable;[m
+[32m+[m[32mimport android.support.design.widget.FloatingActionButton;[m
+[32m+[m[32mimport android.support.design.widget.Snackbar;[m
+[32m+[m[32mimport android.support.v4.app.ActivityCompat;[m
+[32m+[m[32mimport android.support.v7.app.AlertDialog;[m
+[32m+[m[32mimport android.support.v7.app.AppCompatActivity;[m
+[32m+[m[32mimport android.support.v7.widget.Toolbar;[m
+[32m+[m[32mimport android.view.Menu;[m
+[32m+[m[32mimport android.view.MenuItem;[m
+[32m+[m[32mimport android.view.View;[m
+[32m+[m[32mimport android.widget.Button;[m
+[32m+[m[32mimport android.widget.EditText;[m
+[32m+[m[32mimport android.widget.TextView;[m
+[32m+[m
+[32m+[m[32mimport com.google.android.gms.common.ConnectionResult;[m
+[32m+[m[32mimport com.google.android.gms.common.GooglePlayServicesUtil;[m
+[32m+[m[32mimport com.google.android.gms.common.api.GoogleApiClient;[m
+[32m+[m[32mimport com.google.android.gms.common.api.PendingResult;[m
+[32m+[m[32mimport com.google.android.gms.common.api.ResultCallback;[m
+[32m+[m[32mimport com.google.android.gms.common.api.Status;[m
+[32m+[m
+[32m+[m[32mimport com.google.android.gms.location.LocationRequest;[m
+[32m+[m[32mimport com.google.android.gms.location.LocationServices;[m
+[32m+[m[32mimport com.google.android.gms.location.LocationSettingsRequest;[m
+[32m+[m[32mimport com.google.android.gms.location.LocationSettingsResult;[m
+[32m+[m[32mimport com.google.android.gms.location.LocationSettingsStates;[m
+[32m+[m[32mimport com.google.android.gms.location.LocationSettingsStatusCodes;[m
+[32m+[m
+[32m+[m[32mimport java.text.DecimalFormat;[m
+[32m+[m[32mimport java.text.NumberFormat;[m
+[32m+[m[32mimport java.util.concurrent.Executors;[m
+[32m+[m[32mimport java.util.concurrent.TimeUnit;[m
+[32m+[m
+[32m+[m
+[32m+[m[32mpublic class ProxyAlertActivity extends AppCompatActivity[m
+[32m+[m[32m        implements GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks,[m
+[32m+[m[32m        com.google.android.gms.location.LocationListener {[m
+[32m+[m
+[32m+[m[32m    private static final long ONE_MIN = 1000 * 60;[m
+[32m+[m[32m    private static final long TWO_MIN = ONE_MIN * 2;[m
+[32m+[m[32m    private static final long FIVE_MIN = ONE_MIN * 5;[m
+[32m+[m[32m    private static final long POLLING_FREQ = 1000 * 30;[m
+[32m+[m[32m    private static final long FASTEST_UPDATE_FREQ = 1000 * 5;[m
+[32m+[m[32m    private static final float MIN_ACCURACY = 25.0f;[m
+[32m+[m[32m    private static final float MIN_LAST_READ_ACCURACY = 500.0f;[m
+[32m+[m
+[32m+[m[32m    protected LocationRequest mLocationRequest;[m
+[32m+[m[32m    private Location mBestReading;[m
+[32m+[m
+[32m+[m[32m    protected GoogleApiClient mGoogleApiClient;[m
+[32m+[m
+[32m+[m[32m    private TextView mLattitudeTextView;[m
+[32m+[m[32m    private TextView mLongitudeTextView;[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onCreate(Bundle savedInstanceState) {[m
+[32m+[m[32m        super.onCreate(savedInstanceState);[m
+[32m+[m
+[32m+[m[32m//        if (!servicesAvailable()) {[m
+[32m+[m[32m//            finish();[m
+[32m+[m[32m//        }[m
+[32m+[m
+[32m+[m[32m        setContentView(R.layout.activity_main);[m
+[32m+[m
+[32m+[m[32m        mGoogleApiClient = new GoogleApiClient.Builder(this)[m
+[32m+[m[32m                .addApi(LocationServices.API)[m
+[32m+[m[32m                .addConnectionCallbacks(this)[m
+[32m+[m[32m                .addOnConnectionFailedListener(this)[m
+[32m+[m[32m                .build();[m
+[32m+[m
+[32m+[m[32m//        setupLocationManagement();[m
+[32m+[m
+[32m+[m[32m        mLattitudeTextView = (TextView) findViewById(R.id.point_latitude);[m
+[32m+[m[32m        mLongitudeTextView = (TextView )findViewById(R.id.point_longitude);[m
+[32m+[m
+[32m+[m[32m//        longitudeEditText = (EditText) findViewById(R.id.point_longitude);[m
+[32m+[m[32m        if (mGoogleApiClient != null) {[m
+[32m+[m[32m            mGoogleApiClient.connect();[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onResume() {[m
+[32m+[m[32m        super.onResume();[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onPause() {[m
+[32m+[m[32m        super.onPause();[m
+[32m+[m
+[32m+[m[32m        if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {[m
+[32m+[m[32m            mGoogleApiClient.disconnect();[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    public void onLocationChanged(Location location) {[m
+[32m+[m
+[32m+[m[32m//        // Determine whether new location is better than current best[m
+[32m+[m[32m//        // estimate[m
+[32m+[m[32m//        if (null == mBestReading || location.getAccuracy() < mBestReading.getAccuracy()) {[m
+[32m+[m[32m//            mBestReading = location;[m
+[32m+[m[32m//[m
+[32m+[m[32m//            if (mBestReading.getAccuracy() < MIN_ACCURACY) {[m
+[32m+[m[32m//                LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);[m
+[32m+[m[32m//            }[m
+[32m+[m[32m//        }[m
+[32m+[m
+[32m+[m[32m        mLongitudeTextView.setText(String.valueOf(location.getLongitude()));[m
+[32m+[m[32m        mLattitudeTextView.setText(String.valueOf(location.getLatitude()));[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    @SuppressWarnings("MissingPermission")[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    public void onConnected(Bundle dataBundle) {[m
+[32m+[m
+[32m+[m[32m        // Get first reading. Get additional location updates if necessary[m
+[32m+[m[32m//        if (servicesAvailable()) {[m
+[32m+[m[32m//            // Get best last location measurement meeting criteria[m
+[32m+[m[32m//            mBestReading = bestLastKnownLocation(MIN_LAST_READ_ACCURACY, FIVE_MIN);[m
+[32m+[m[32m//[m
+[32m+[m[32m//            if (null == mBestReading[m
+[32m+[m[32m//                    || mBestReading.getAccuracy() > MIN_LAST_READ_ACCURACY[m
+[32m+[m[32m//                    || mBestReading.getTime() < System.currentTimeMillis() - TWO_MIN) {[m
+[32m+[m[32m//[m
+[32m+[m[32m//                LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);[m
+[32m+[m[32m//[m
+[32m+[m[32m//                // Schedule a runnable to unregister location listeners[m
+[32m+[m[32m//                Executors.newScheduledThreadPool(1).schedule(new Runnable() {[m
+[32m+[m[32m//[m
+[32m+[m[32m//                    @Override[m
+[32m+[m[32m//                    public void run() {[m
+[32m+[m[32m//                        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, ProxyAlertActivity.this);[m
+[32m+[m[32m//                    }[m
+[32m+[m[32m//[m
+[32m+[m[32m//                }, ONE_MIN, TimeUnit.MILLISECONDS);[m
+[32m+[m[32m//            }[m
+[32m+[m[32m//        }[m
+[32m+[m
+[32m+[m[32m        ActivityCompat.requestPermissions(this,[m
+[32m+[m[32m                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},[m
+[32m+[m[32m                MY_PERMISSIONS_REQUEST_FINE_LOCATION);[m
+[32m+[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    public void onConnectionSuspended(int i) {[m
+[32m+[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    @SuppressWarnings("MissingPermission")[m
+[32m+[m[32m    private Location bestLastKnownLocation(float minAccuracy, long minTime) {[m
+[32m+[m[32m        Location bestResult = null;[m
+[32m+[m[32m        float bestAccuracy = Float.MAX_VALUE;[m
+[32m+[m[32m        long bestTime = Long.MIN_VALUE;[m
+[32m+[m
+[32m+[m[32m        // Get the best most recent location currently available[m
+[32m+[m[32m        Location mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);[m
+[32m+[m
+[32m+[m[32m        if (mCurrentLocation != null) {[m
+[32m+[m[32m            float accuracy = mCurrentLocation.getAccuracy();[m
+[32m+[m[32m            long time = mCurrentLocation.getTime();[m
+[32m+[m
+[32m+[m[32m            if (accuracy < bestAccuracy) {[m
+[32m+[m[32m                bestResult = mCurrentLocation;[m
+[32m+[m[32m                bestAccuracy = accuracy;[m
+[32m+[m[32m                bestTime = time;[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        // Return best reading or null[m
+[32m+[m[32m        if (bestAccuracy > minAccuracy || bestTime < minTime) {[m
+[32m+[m[32m            return null;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        else {[m
+[32m+[m[32m            return bestResult;[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    public void onConnectionFailed(ConnectionResult connectionResult) {[m
+[32m+[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m//    private boolean servicesAvailable() {[m
+[32m+[m[32m//        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);[m
+[32m+[m[32m//[m
+[32m+[m[32m//        if (ConnectionResult.SUCCESS == resultCode) {[m
+[32m+[m[32m//            return true;[m
+[32m+[m[32m//        }[m
+[32m+[m[32m//        else {[m
+[32m+[m[32m//            GooglePlayServicesUtil.getErrorDialog(resultCode, this, 0).show();[m
+[32m+[m[32m//            return false;[m
+[32m+[m[32m//        }[m
+[32m+[m[32m//    }[m
+[32m+[m
+[32m+[m
+[32m+[m[32m//    public static final int REQUEST_RESOLVE_ERROR = 1001;  // Launch error resolution activity[m
+[32m+[m[32m    public static final int REQUEST_CHECK_SETTINGS = 1002; // Check permissions from location request[m
+[32m+[m[32m//[m
+[32m+[m[32m//    protected Location mLastLocation;[m
+[32m+[m[32m//    protected LocationRequest mLocationRequest;[m
+[32m+[m[32m//[m
+[32m+[m[32m//    private static final long MINIMUM_DISTANCECHANGE_FOR_UPDATE = 1; // in Meters[m
+[32m+[m[32m//    private static final long MINIMUM_TIME_BETWEEN_UPDATE = 100; // in Milliseconds[m
+[32m+[m[32m//[m
+[32m+[m[32m//    private static final long POINT_RADIUS = 10; // 1000; // in Meters[m
+[32m+[m[32m//    private static final long PROX_ALERT_EXPIRATION = 120000; // mSec to expire or -1 for no expiration[m
+[32m+[m[32m//[m
+[32m+[m[32m//    private static final String POINT_LATITUDE_KEY = "POINT_LATITUDE_KEY";[m
+[32m+[m[32m//    private static final String POINT_LONGITUDE_KEY = "POINT_LONGITUDE_KEY";[m
+[32m+[m[32m//[m
+[32m+[m[32m//    private static final String PROX_ALERT_INTENT =[m
+[32m+[m[32m//            "com.wamsware.android.lbs.ProximityAlert";[m
+[32m+[m[32m//[m
+[32m+[m[32m//    private static final NumberFormat nf = new DecimalFormat("##.########");[m
+[32m+[m[32m//[m
+[32m+[m[32m//    private EditText latitudeEditText;[m
+[32m+[m[32m//    private EditText longitudeEditText;[m
+[32m+[m[32m//    private Button findCoordinatesButton;[m
+[32m+[m[32m//    private Button savePointButton;[m
+[32m+[m[32m//[m
+[32m+[m[32m    private static final int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 1;[m
+[32m+[m[32m//[m
+[32m+[m[32m//    protected GoogleApiClient mGoogleApiClient;[m
+[32m+[m[32m//[m
+[32m+[m[32m//    @Override[m
+[32m+[m[32m//    protected void onCreate(Bundle savedInstanceState) {[m
+[32m+[m[32m//        super.onCreate(savedInstanceState);[m
+[32m+[m[32m//[m
+[32m+[m[32m//        setContentView(R.layout.activity_main);[m
+[32m+[m[32m//[m
+[32m+[m[32m//        // NOTE: No call to .addScope() was added[m
+[32m+[m[32m//        mGoogleApiClient = new GoogleApiClient.Builder(this)[m
+[32m+[m[32m//                .enableAutoManage(this /* FragmentActivity */,[m
+[32m+[m[32m//                        this /* OnConnectionFailedListener */)[m
+[32m+[m[32m//                .addApi(LocationServices.API)[m
+[32m+[m[32m//                .build();[m
+[32m+[m[32m//[m
+[32m+[m[32m////        if (!mGoogleApiClient.isConnecting() && !mGoogleApiClient.isConnected()) {[m
+[32m+[m[32m////            mGoogleApiClient.connect();[m
+[32m+[m[32m////        }[m
+[32m+[m[32m////        else {[m
+[32m+[m[32m////            // Already connected (this would normally be done in onConnected()[m
+[32m+[m[32m////            // for a new connection, so do it here if the connection was already[m
+[32m+[m[32m////            // established[m
+[32m+[m[32m////[m
+[32m+[m[32m////            setupLocationManagement();[m
+[32m+[m[32m////        }[m
+[32m+[m[32m//    }[m
+[32m+[m[32m//[m
+[32m+[m[32m//    @Override[m
+[32m+[m[32m//    public boolean onCreateOptionsMenu(Menu menu) {[m
+[32m+[m[32m//        // Inflate the menu; this adds items to the action bar if it is present.[m
+[32m+[m[32m//        getMenuInflater().inflate(R.menu.menu_main, menu);[m
+[32m+[m[32m//        return true;[m
+[32m+[m[32m//    }[m
+[32m+[m[32m//[m
+[32m+[m[32m//    @Override[m
+[32m+[m[32m//    public boolean onOptionsItemSelected(MenuItem item) {[m
+[32m+[m[32m//        // Handle action bar item clicks here. The action bar will[m
+[32m+[m[32m//        // automatically handle clicks on the Home/Up button, so long[m
+[32m+[m[32m//        // as you specify a parent activity in AndroidManifest.xml.[m
+[32m+[m[32m//        int id = item.getItemId();[m
+[32m+[m[32m//[m
+[32m+[m[32m//        //noinspection SimplifiableIfStatement[m
+[32m+[m[32m//        if (id == R.id.action_settings) {[m
+[32m+[m[32m//            return true;[m
+[32m+[m[32m//        }[m
+[32m+[m[32m//[m
+[32m+[m[32m//        return super.onOptionsItemSelected(item);[m
+[32m+[m[32m//    }[m
+[32m+[m[32m//[m
+[32m+[m[32m//[m
+[32m+[m[32m//    private void saveProximityAlertPoint() {[m
+[32m+[m[32m//[m
+[32m+[m[32m//        saveCoordinatesInPreferences((float) mLastLocation.getLatitude(),[m
+[32m+[m[32m//                (float) mLastLocation.getLongitude());[m
+[32m+[m[32m//[m
+[32m+[m[32m//        addProximityAlert(mLastLocation.getLatitude(), mLastLocation.getLongitude());[m
+[32m+[m[32m//    }[m
+[32m+[m[32m//[m
+[32m+[m[32m//    private void addProximityAlert(double latitude, double longitude) {[m
+[32m+[m[32m//[m
+[32m+[m[32m////        Intent intent = new Intent(PROX_ALERT_INTENT);[m
+[32m+[m[32m////        PendingIntent proximityIntent = PendingIntent.getBroadcast(this, 0, intent, 0);[m
+[32m+[m[32m////[m
+[32m+[m[32m////        IntentFilter filter = new IntentFilter(PROX_ALERT_INTENT);[m
+[32m+[m[32m////[m
+[32m+[m[32m////        checkPermissions();[m
+[32m+[m[32m////[m
+[32m+[m[32m////        //noinspection MissingPermission[m
+[32m+[m[32m////        locationManager.addProximityAlert([m
+[32m+[m[32m////                latitude, // the latitude of the central point of the alert region[m
+[32m+[m[32m////                longitude, // the longitude of the central point of the alert region[m
+[32m+[m[32m////                POINT_RADIUS, // the radius of the central point of the alert region, in meters[m
+[32m+[m[32m////                PROX_ALERT_EXPIRATION, // time for this proximity alert, in milliseconds, or -1 to indicate no expiration[m
+[32m+[m[32m////                proximityIntent // will be used to generate an Intent to fire when entry to or exit from the alert region is detected[m
+[32m+[m[32m////        );[m
+[32m+[m[32m////[m
+[32m+[m[32m////        registerReceiver(new ProximityIntentReceiver(), filter);[m
+[32m+[m[32m//    }[m
+[32m+[m[32m//[m
+[32m+[m[32m////    private void populateCoordinatesFromLastKnownLocation() {[m
+[32m+[m[32m////[m
+[32m+[m[32m////        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()[m
+[32m+[m[32m////                .addLocationRequest(mLocationRequest);[m
+[32m+[m[32m////    }[m
+[32m+[m[32m//[m
+[32m+[m[32m//    private void saveCoordinatesInPreferences(float latitude, float longitude) {[m
+[32m+[m[32m//        SharedPreferences prefs =[m
+[32m+[m[32m//                this.getSharedPreferences(getClass().getSimpleName(),[m
+[32m+[m[32m//                        Context.MODE_PRIVATE);[m
+[32m+[m[32m//        SharedPreferences.Editor prefsEditor = prefs.edit();[m
+[32m+[m[32m//        prefsEditor.putFloat(POINT_LATITUDE_KEY, latitude);[m
+[32m+[m[32m//        prefsEditor.putFloat(POINT_LONGITUDE_KEY, longitude);[m
+[32m+[m[32m//        prefsEditor.commit();[m
+[32m+[m[32m//    }[m
+[32m+[m[32m//[m
+[32m+[m[32m//    private Location retrievelocationFromPreferences() {[m
+[32m+[m[32m//        SharedPreferences prefs =[m
+[32m+[m[32m//                this.getSharedPreferences(getClass().getSimpleName(),[m
+[32m+[m[32m//                        Context.MODE_PRIVATE);[m
+[32m+[m[32m//        Location location = new Location("POINT_LOCATION");[m
+[32m+[m[32m//        location.setLatitude(prefs.getFloat(POINT_LATITUDE_KEY, 0));[m
+[32m+[m[32m//        location.setLongitude(prefs.getFloat(POINT_LONGITUDE_KEY, 0));[m
+[32m+[m[32m//        return location;[m
+[32m+[m[32m//    }[m
+[32m+[m[32m//[m
+[32m+[m[32m//    @Override[m
+[32m+[m[32m//    public void onConnectionFailed(@NonNull ConnectionResult result) {[m
+[32m+[m[32m//[m
+[32m+[m[32m//        // Called whenever the API client fails to connect.[m
+[32m+[m[32m//[m
+[32m+[m[32m//        if (result.hasResolution()) {[m
+[32m+[m[32m//            try {[m
+[32m+[m[32m//                result.startResolutionForResult(this, REQUEST_RESOLVE_ERROR);[m
+[32m+[m[32m//            } catch (IntentSender.SendIntentException e) {[m
+[32m+[m[32m//                // There was an error with the resolution intent. Try again.[m
+[32m+[m[32m//                mGoogleApiClient.connect();[m
+[32m+[m[32m//            }[m
+[32m+[m[32m//        } else {[m
+[32m+[m[32m//            GooglePlayServicesUtil.getErrorDialog([m
+[32m+[m[32m//                    result.getErrorCode(), this, 0).show();[m
+[32m+[m[32m//        }[m
+[32m+[m[32m//    }[m
+[32m+[m[32m//[m
+[32m+[m[32m//    @Override[m
+[32m+[m[32m//    public void onConnected(@Nullable Bundle bundle) {[m
+[32m+[m[32m//        setupLocationManagement();[m
+[32m+[m[32m//    }[m
+[32m+[m[32m//[m
+[32m+[m[32m//    @Override[m
+[32m+[m[32m//    public void onConnectionSuspended(int i) {[m
+[32m+[m[32m//[m
+[32m+[m[32m//    }[m
+[32m+[m[32m//[m
+[32m+[m[32m//[m
+[32m+[m[32m//[m
+[32m+[m[32m//[m
+[32m+[m[32m//    public class MyLocationListener implements LocationListener {[m
+[32m+[m[32m//        public void onLocationChanged(Location location) {[m
+[32m+[m[32m////            Location pointLocation = retrievelocationFromPreferences();[m
+[32m+[m[32m////            float distance = location.distanceTo(pointLocation);[m
+[32m+[m[32m////            Toast.makeText(ProxyAlertActivity.this,[m
+[32m+[m[32m////                    "Distance from Point:"+distance, Toast.LENGTH_LONG).show();[m
+[32m+[m[32m//        }[m
+[32m+[m[32m//        public void onStatusChanged(String s, int i, Bundle b) {[m
+[32m+[m[32m//        }[m
+[32m+[m[32m//        public void onProviderDisabled(String s) {[m
+[32m+[m[32m//        }[m
+[32m+[m[32m//        public void onProviderEnabled(String s) {[m
+[32m+[m[32m//        }[m
+[32m+[m[32m//    }[m
+[32m+[m[32m//[m
+[32m+[m[32m////    private void requestLocationUpdates() {[m
+[32m+[m[32m////        if (locationManager != null) {[m
+[32m+[m[32m////            //noinspection MissingPermission[m
+[32m+[m[32m////            locationManager.requestLocationUpdates([m
+[32m+[m[32m////                    LocationManager.GPS_PROVIDER,[m
+[32m+[m[32m////                    MINIMUM_TIME_BETWEEN_UPDATE,[m
+[32m+[m[32m////                    MINIMUM_DISTANCECHANGE_FOR_UPDATE,[m
+[32m+[m[32m////                    new MyLocationListener()[m
+[32m+[m[32m////            );[m
+[32m+[m[32m////        }[m
+[32m+[m[32m////[m
+[32m+[m[32m////    };[m
+[32m+[m[32m//[m
+[32m+[m[32m//[m
+[32m+[m[32m////    private void checkPermissions() {[m
+[32m+[m[32m////[m
+[32m+[m[32m////        boolean hasPermission = false;[m
+[32m+[m[32m////[m
+[32m+[m[32m////        if ( ActivityCompat.checkSelfPermission([m
+[32m+[m[32m////                this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&[m
+[32m+[m[32m////                ActivityCompat.checkSelfPermission([m
+[32m+[m[32m////                        this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&[m
+[32m+[m[32m////                ActivityCompat.checkSelfPermission([m
+[32m+[m[32m////                        this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&[m
+[32m+[m[32m////                ActivityCompat.checkSelfPermission([m
+[32m+[m[32m////                        this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED){[m
+[32m+[m[32m////[m
+[32m+[m[32m////            if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {[m
+[32m+[m[32m////                buildAlertMessageNoGps();[m
+[32m+[m[32m////            }[m
+[32m+[m[32m////[m
+[32m+[m[32m////            hasPermission = true;[m
+[32m+[m[32m////[m
+[32m+[m[32m////        } else {[m
+[32m+[m[32m////[m
+[32m+[m[32m//            ActivityCompat.requestPermissions(this,[m
+[32m+[m[32m//                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},[m
+[32m+[m[32m//                    MY_PERMISSIONS_REQUEST_FINE_LOCATION);[m
+[32m+[m[32m////[m
+[32m+[m[32m////            // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an[m
+[32m+[m[32m////            // app-defined int constant. The callback method gets the[m
+[32m+[m[32m////            // result of the request.[m
+[32m+[m[32m////        }[m
+[32m+[m[32m////        return hasPermission;[m
+[32m+[m[32m////    }[m
+[32m+[m[32m//[m
+[32m+[m[32m//[m
+[32m+[m[32m//[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    public void onRequestPermissionsResult(int requestCode,[m
+[32m+[m[32m                                           String permissions[], int[] grantResults) {[m
+[32m+[m[32m        switch (requestCode) {[m
+[32m+[m[32m            case MY_PERMISSIONS_REQUEST_FINE_LOCATION: {[m
+[32m+[m[32m                // If request is cancelled, the result arrays are empty.[m
+[32m+[m[32m                if (grantResults.length > 0[m
+[32m+[m[32m                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {[m
+[32m+[m[32m                    setupLocationManagement();[m
+[32m+[m[32m                } else {[m
+[32m+[m
+[32m+[m[32m                    // Disable the functionality that depends on this permission.[m
+[32m+[m[32m                }[m
+[32m+[m[32m                return;[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m[32m//[m
+[32m+[m[32m//    @Override[m
+[32m+[m[32m//    protected void onResume() {[m
+[32m+[m[32m//        super.onResume();[m
+[32m+[m[32m//[m
+[32m+[m[32m//        latitudeEditText = (EditText) findViewById(R.id.point_latitude);[m
+[32m+[m[32m//        longitudeEditText = (EditText) findViewById(R.id.point_longitude);[m
+[32m+[m[32m//        findCoordinatesButton = (Button) findViewById(R.id.find_coordinates_button);[m
+[32m+[m[32m//        savePointButton = (Button) findViewById(R.id.save_point_button);[m
+[32m+[m[32m//[m
+[32m+[m[32m////        findCoordinatesButton.setOnClickListener(new View.OnClickListener() {[m
+[32m+[m[32m////            @Override[m
+[32m+[m[32m////            public void onClick(View v) {[m
+[32m+[m[32m////                populateCoordinatesFromLastKnownLocation();[m
+[32m+[m[32m////            }[m
+[32m+[m[32m////        });[m
+[32m+[m[32m//[m
+[32m+[m[32m//        savePointButton.setOnClickListener(new View.OnClickListener() {[m
+[32m+[m[32m//            @Override[m
+[32m+[m[32m//            public void onClick(View v) {[m
+[32m+[m[32m////                saveProximityAlertPoint();[m
+[32m+[m[32m//            }[m
+[32m+[m[32m//        });[m
+[32m+[m[32m//[m
+[32m+[m[32m//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);[m
+[32m+[m[32m//        setSupportActionBar(toolbar);[m
+[32m+[m[32m//[m
+[32m+[m[32m//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);[m
+[32m+[m[32m//        fab.setOnClickListener(new View.OnClickListener() {[m
+[32m+[m[32m//            @Override[m
+[32m+[m[32m//            public void onClick(View view) {[m
+[32m+[m[32m//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)[m
+[32m+[m[32m//                        .setAction("Action", null).show();[m
+[32m+[m[32m//            }[m
+[32m+[m[32m//        });[m
+[32m+[m[32m//[m
+[32m+[m[32m//[m
+[32m+[m[32m//        if (mGoogleApiClient != null) {[m
+[32m+[m[32m//            mGoogleApiClient.connect();[m
+[32m+[m[32m//        }[m
+[32m+[m[32m//    }[m
+[32m+[m[32m//[m
+[32m+[m[32m//    @Override[m
+[32m+[m[32m//    protected void onPause() {[m
+[32m+[m[32m//        super.onPause();[m
+[32m+[m[32m//[m
+[32m+[m[32m//        if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {[m
+[32m+[m[32m//            mGoogleApiClient.disconnect();[m
+[32m+[m[32m//        }[m
+[32m+[m[32m//    }[m
+[32m+[m[32m//[m
+[32m+[m[32m//    @Override[m
+[32m+[m[32m//    public void onStop() {[m
+[32m+[m[32m//        if (mGoogleApiClient != null) {[m
+[32m+[m[32m//            mGoogleApiClient.disconnect();[m
+[32m+[m[32m//        }[m
+[32m+[m[32m//        super.onStop();[m
+[32m+[m[32m//[m
+[32m+[m[32m//        // The activity is no longer visible (it is now "stopped")[m
+[32m+[m[32m//    }[m
+[32m+[m[32m//[m
+[32m+[m[32m//[m
+[32m+[m[32m//    private void buildAlertMessageNoGps() {[m
+[32m+[m[32m//        final AlertDialog.Builder builder = new AlertDialog.Builder(this);[m
+[32m+[m[32m//        builder.setMessage("Your GPS appears to be disabled, do you want to enable it?")[m
+[32m+[m[32m//                .setCancelable(false)[m
+[32m+[m[32m//                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {[m
+[32m+[m[32m//                    public void onClick(final DialogInterface dialog, final int id) {[m
+[32m+[m[32m//                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));[m
+[32m+[m[32m//                    }[m
+[32m+[m[32m//                })[m
+[32m+[m[32m//                .setNegativeButton("No", new DialogInterface.OnClickListener() {[m
+[32m+[m[32m//                    public void onClick(final DialogInterface dialog, final int id) {[m
+[32m+[m[32m//                        dialog.cancel();[m
+[32m+[m[32m//                    }[m
+[32m+[m[32m//                });[m
+[32m+[m[32m//        final AlertDialog alert = builder.create();[m
+[32m+[m[32m//        alert.show();[m
+[32m+[m[32m//    }[m
+[32m+[m[32m//[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onActivityResult(int requestCode, int resultCode, Intent data) {[m
+[32m+[m
+[32m+[m[32m        switch(requestCode) {[m
+[32m+[m
+[32m+[m[32m//            case REQUEST_RESOLVE_ERROR:[m
+[32m+[m[32m//                if (resultCode == AppCompatActivity.RESULT_OK) {[m
+[32m+[m[32m//                ((CloudFragment) fm.findFragmentByTag([m
+[32m+[m[32m//                        CloudFragment.class.getName())).connectToGoogleServices();[m
+[32m+[m[32m//                }[m
+[32m+[m[32m//                break;[m
+[32m+[m
+[32m+[m[32m            case REQUEST_CHECK_SETTINGS:[m
+[32m+[m[32m                if (resultCode == AppCompatActivity.RESULT_OK) {[m
+[32m+[m[32m//                    setupLocationManagement();[m
+[32m+[m[32m                }[m
+[32m+[m[32m                break;[m
+[32m+[m
+[32m+[m[32m            default:[m
+[32m+[m[32m                break;[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m[32m//[m
+[32m+[m[32m//[m
+[32m+[m[32m    private void setupLocationManagement() {[m
+[32m+[m
+[32m+[m[32m        mLocationRequest = new LocationRequest();[m
+[32m+[m[32m        mLocationRequest.setInterval(10);[m
+[32m+[m[32m        mLocationRequest.setFastestInterval(1);[m
+[32m+[m[32m        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);[m
+[32m+[m
+[32m+[m[32m        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()[m
+[32m+[m[32m                .addLocationRequest(mLocationRequest);[m
+[32m+[m
+[32m+[m[32m        PendingResult<LocationSettingsResult> result =[m
+[32m+[m[32m                LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient,[m
+[32m+[m[32m                        builder.build());[m
+[32m+[m
+[32m+[m[32m        result.setResultCallback(new ResultCallback<LocationSettingsResult>() {[m
+[32m+[m[32m            @SuppressWarnings("MissingPermission")[m
+[32m+[m[32m            @Override[m
+[32m+[m[32m            public void onResult(@NonNull LocationSettingsResult result) {[m
+[32m+[m[32m                final Status status = result.getStatus();[m
+[32m+[m[32m                final LocationSettingsStates states = result.getLocationSettingsStates();[m
+[32m+[m[32m                switch (status.getStatusCode()) {[m
+[32m+[m[32m                    case LocationSettingsStatusCodes.SUCCESS:[m
+[32m+[m[32m                        // All location settings are satisfied. The client can[m
+[32m+[m[32m                        // initialize location requests here.[m
+[32m+[m
+[32m+[m[32m                        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, ProxyAlertActivity.this);[m
+[32m+[m
+[32m+[m[32m//                        // Get best last location measurement meeting criteria[m
+[32m+[m[32m//                        mBestReading = bestLastKnownLocation(MIN_LAST_READ_ACCURACY, FIVE_MIN);[m
+[32m+[m[32m//[m
+[32m+[m[32m//                        if (null == mBestReading[m
+[32m+[m[32m//                                || mBestReading.getAccuracy() > MIN_LAST_READ_ACCURACY[m
+[32m+[m[32m//                                || mBestReading.getTime() < System.currentTimeMillis() - TWO_MIN) {[m
+[32m+[m[32m//[m
+[32m+[m[32m//                            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, ProxyAlertActivity.this);[m
+[32m+[m[32m//[m
+[32m+[m[32m//                            // Schedule a runnable to unregister location listeners[m
+[32m+[m[32m//                            Executors.newScheduledThreadPool(1).schedule(new Runnable() {[m
+[32m+[m[32m//[m
+[32m+[m[32m//                                @Override[m
+[32m+[m[32m//                                public void run() {[m
+[32m+[m[32m//                                    LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, ProxyAlertActivity.this);[m
+[32m+[m[32m//                                }[m
+[32m+[m[32m//[m
+[32m+[m[32m//                            }, ONE_MIN, TimeUnit.MILLISECONDS);[m
+[32m+[m[32m//                        }[m
+[32m+[m
+[32m+[m[32m                        break;[m
+[32m+[m[32m                    case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:[m
+[32m+[m[32m                        // Location settings are not satisfied, but this can be fixed[m
+[32m+[m[32m                        // by showing the user a dialog.[m
+[32m+[m[32m                        try {[m
+[32m+[m[32m                            // Show the dialog by calling startResolutionForResult(),[m
+[32m+[m[32m                            // and check the result in onActivityResult().[m
+[32m+[m[32m                            status.startResolutionForResult([m
+[32m+[m[32m//                                    OuterClass.this,[m
+[32m+[m[32m                                    ProxyAlertActivity.this,[m
+[32m+[m[32m                                    REQUEST_CHECK_SETTINGS);[m
+[32m+[m[32m                        } catch (IntentSender.SendIntentException e) {[m
+[32m+[m[32m                            // Ignore the error.[m
+[32m+[m[32m                        }[m
+[32m+[m[32m                        break;[m
+[32m+[m[32m                    case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:[m
+[32m+[m[32m                        // Location settings are not satisfied. However, we have no way[m
+[32m+[m[32m                        // to fix the settings so we won't show the dialog.[m
+[32m+[m
+[32m+[m[32m                        break;[m
+[32m+[m[32m                }[m
+[32m+[m[32m            }[m
+[32m+[m[32m        });[m
+[32m+[m
+[32m+[m[32m//        //noinspection MissingPermission[m
+[32m+[m[32m//        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);[m
+[32m+[m
+[32m+[m[32m//        //noinspection MissingPermission[m
+[32m+[m[32m//        LocationServices.FusedLocationApi.requestLocationUpdates([m
+[32m+[m[32m//                mGoogleApiClient, mLocationRequest, this);[m
+[32m+[m[32m    }[m
+[32m+[m[32m//[m
+[32m+[m[32m//    @Override[m
+[32m+[m[32m//    public void onLocationChanged(Location location) {[m
+[32m+[m[32m//        mLastLocation = location;[m
+[32m+[m[32m////        mLastUpdateTime = DateFormat.getTimeInstance().format(new Date());[m
+[32m+[m[32m//        updateUI();[m
+[32m+[m[32m//    }[m
+[32m+[m[32m//[m
+[32m+[m[32m//    private void updateUI() {[m
+[32m+[m[32m//        //noinspection MissingPermission[m
+[32m+[m[32m//        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);[m
+[32m+[m[32m//        latitudeEditText.setText(String.valueOf(mLastLocation.getLatitude()));[m
+[32m+[m[32m//        longitudeEditText.setText(String.valueOf(mLastLocation.getLongitude()));[m
+[32m+[m[32m//    }[m
+[32m+[m
+[32m+[m[32m}[m
+[1mdiff --git a/app/src/main/res/drawable-hdpi/ic_action_accept.png b/app/src/main/res/drawable-hdpi/ic_action_accept.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..d93146d[m
+Binary files /dev/null and b/app/src/main/res/drawable-hdpi/ic_action_accept.png differ
+[1mdiff --git a/app/src/main/res/drawable-hdpi/ic_action_adjust.png b/app/src/main/res/drawable-hdpi/ic_action_adjust.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..5662e99[m
+Binary files /dev/null and b/app/src/main/res/drawable-hdpi/ic_action_adjust.png differ
+[1mdiff --git a/app/src/main/res/drawable-hdpi/ic_action_cancel.png b/app/src/main/res/drawable-hdpi/ic_action_cancel.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..f889617[m
+Binary files /dev/null and b/app/src/main/res/drawable-hdpi/ic_action_cancel.png differ
+[1mdiff --git a/app/src/main/res/drawable-hdpi/ic_action_edit.png b/app/src/main/res/drawable-hdpi/ic_action_edit.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..5f7c6ef[m
+Binary files /dev/null and b/app/src/main/res/drawable-hdpi/ic_action_edit.png differ
+[1mdiff --git a/app/src/main/res/drawable-hdpi/ic_action_new.png b/app/src/main/res/drawable-hdpi/ic_action_new.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..3a525cd[m
+Binary files /dev/null and b/app/src/main/res/drawable-hdpi/ic_action_new.png differ
+[1mdiff --git a/app/src/main/res/drawable-hdpi/ic_action_overflow.png b/app/src/main/res/drawable-hdpi/ic_action_overflow.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..18bc4c5[m
+Binary files /dev/null and b/app/src/main/res/drawable-hdpi/ic_action_overflow.png differ
+[1mdiff --git a/app/src/main/res/drawable-hdpi/ic_action_remove.png b/app/src/main/res/drawable-hdpi/ic_action_remove.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9c717dd[m
+Binary files /dev/null and b/app/src/main/res/drawable-hdpi/ic_action_remove.png differ
+[1mdiff --git a/app/src/main/res/drawable-hdpi/ic_action_save.png b/app/src/main/res/drawable-hdpi/ic_action_save.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c4b7783[m
+Binary files /dev/null and b/app/src/main/res/drawable-hdpi/ic_action_save.png differ
+[1mdiff --git a/app/src/main/res/drawable-hdpi/ic_action_spread.png b/app/src/main/res/drawable-hdpi/ic_action_spread.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..8c0aa6b[m
+Binary files /dev/null and b/app/src/main/res/drawable-hdpi/ic_action_spread.png differ
+[1mdiff --git a/app/src/main/res/drawable-hdpi/ic_action_undo.png b/app/src/main/res/drawable-hdpi/ic_action_undo.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..544f6b5[m
+Binary files /dev/null and b/app/src/main/res/drawable-hdpi/ic_action_undo.png differ
+[1mdiff --git a/app/src/main/res/drawable-hdpi/ic_apply_event.png b/app/src/main/res/drawable-hdpi/ic_apply_event.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e1c323c[m
+Binary files /dev/null and b/app/src/main/res/drawable-hdpi/ic_apply_event.png differ
+[1mdiff --git a/app/src/main/res/drawable-hdpi/ic_drawer.png b/app/src/main/res/drawable-hdpi/ic_drawer.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c59f601[m
+Binary files /dev/null and b/app/src/main/res/drawable-hdpi/ic_drawer.png differ
+[1mdiff --git a/app/src/main/res/drawable-hdpi/ic_drawer_shadow.9.png b/app/src/main/res/drawable-hdpi/ic_drawer_shadow.9.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..236bff5[m
+Binary files /dev/null and b/app/src/main/res/drawable-hdpi/ic_drawer_shadow.9.png differ
+[1mdiff --git a/app/src/main/res/drawable-hdpi/ic_events_calendar.png b/app/src/main/res/drawable-hdpi/ic_events_calendar.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..31d66e1[m
+Binary files /dev/null and b/app/src/main/res/drawable-hdpi/ic_events_calendar.png differ
+[1mdiff --git a/app/src/main/res/drawable-hdpi/ic_launcher.png b/app/src/main/res/drawable-hdpi/ic_launcher.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..d97926f[m
+Binary files /dev/null and b/app/src/main/res/drawable-hdpi/ic_launcher.png differ
+[1mdiff --git a/app/src/main/res/drawable-hdpi/ic_metal_3d_dollar.png b/app/src/main/res/drawable-hdpi/ic_metal_3d_dollar.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..0db10a9[m
+Binary files /dev/null and b/app/src/main/res/drawable-hdpi/ic_metal_3d_dollar.png differ
+[1mdiff --git a/app/src/main/res/drawable-hdpi/ic_metal_gears.png b/app/src/main/res/drawable-hdpi/ic_metal_gears.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..2986747[m
+Binary files /dev/null and b/app/src/main/res/drawable-hdpi/ic_metal_gears.png differ
+[1mdiff --git a/app/src/main/res/drawable-hdpi/ic_none_exist.png b/app/src/main/res/drawable-hdpi/ic_none_exist.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..eebeec4[m
+Binary files /dev/null and b/app/src/main/res/drawable-hdpi/ic_none_exist.png differ
+[1mdiff --git a/app/src/main/res/drawable-ldpi/ic_action_adjust.png b/app/src/main/res/drawable-ldpi/ic_action_adjust.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..1e448c1[m
+Binary files /dev/null and b/app/src/main/res/drawable-ldpi/ic_action_adjust.png differ
+[1mdiff --git a/app/src/main/res/drawable-ldpi/ic_action_spread.png b/app/src/main/res/drawable-ldpi/ic_action_spread.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e21c26f[m
+Binary files /dev/null and b/app/src/main/res/drawable-ldpi/ic_action_spread.png differ
+[1mdiff --git a/app/src/main/res/drawable-ldpi/ic_apply_event.png b/app/src/main/res/drawable-ldpi/ic_apply_event.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c4b88d7[m
+Binary files /dev/null and b/app/src/main/res/drawable-ldpi/ic_apply_event.png differ
+[1mdiff --git a/app/src/main/res/drawable-ldpi/ic_events_calendar.png b/app/src/main/res/drawable-ldpi/ic_events_calendar.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c9e7896[m
+Binary files /dev/null and b/app/src/main/res/drawable-ldpi/ic_events_calendar.png differ
+[1mdiff --git a/app/src/main/res/drawable-ldpi/ic_metal_3d_dollar.png b/app/src/main/res/drawable-ldpi/ic_metal_3d_dollar.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9248cff[m
+Binary files /dev/null and b/app/src/main/res/drawable-ldpi/ic_metal_3d_dollar.png differ
+[1mdiff --git a/app/src/main/res/drawable-ldpi/ic_metal_gears.png b/app/src/main/res/drawable-ldpi/ic_metal_gears.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9767386[m
+Binary files /dev/null and b/app/src/main/res/drawable-ldpi/ic_metal_gears.png differ
+[1mdiff --git a/app/src/main/res/drawable-ldpi/ic_none_exist.png b/app/src/main/res/drawable-ldpi/ic_none_exist.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..b87027c[m
+Binary files /dev/null and b/app/src/main/res/drawable-ldpi/ic_none_exist.png differ
+[1mdiff --git a/app/src/main/res/drawable-mdpi/ic_action_accept.png b/app/src/main/res/drawable-mdpi/ic_action_accept.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..98df0c7[m
+Binary files /dev/null and b/app/src/main/res/drawable-mdpi/ic_action_accept.png differ
+[1mdiff --git a/app/src/main/res/drawable-mdpi/ic_action_adjust.png b/app/src/main/res/drawable-mdpi/ic_action_adjust.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c75dd12[m
+Binary files /dev/null and b/app/src/main/res/drawable-mdpi/ic_action_adjust.png differ
+[1mdiff --git a/app/src/main/res/drawable-mdpi/ic_action_cancel.png b/app/src/main/res/drawable-mdpi/ic_action_cancel.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e84853e[m
+Binary files /dev/null and b/app/src/main/res/drawable-mdpi/ic_action_cancel.png differ
+[1mdiff --git a/app/src/main/res/drawable-mdpi/ic_action_edit.png b/app/src/main/res/drawable-mdpi/ic_action_edit.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..650b4d8[m
+Binary files /dev/null and b/app/src/main/res/drawable-mdpi/ic_action_edit.png differ
+[1mdiff --git a/app/src/main/res/drawable-mdpi/ic_action_new.png b/app/src/main/res/drawable-mdpi/ic_action_new.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..da506ca[m
+Binary files /dev/null and b/app/src/main/res/drawable-mdpi/ic_action_new.png differ
+[1mdiff --git a/app/src/main/res/drawable-mdpi/ic_action_overflow.png b/app/src/main/res/drawable-mdpi/ic_action_overflow.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..b58b7c9[m
+Binary files /dev/null and b/app/src/main/res/drawable-mdpi/ic_action_overflow.png differ
+[1mdiff --git a/app/src/main/res/drawable-mdpi/ic_action_remove.png b/app/src/main/res/drawable-mdpi/ic_action_remove.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9dfb7cc[m
+Binary files /dev/null and b/app/src/main/res/drawable-mdpi/ic_action_remove.png differ
+[1mdiff --git a/app/src/main/res/drawable-mdpi/ic_action_save.png b/app/src/main/res/drawable-mdpi/ic_action_save.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..61304a6[m
+Binary files /dev/null and b/app/src/main/res/drawable-mdpi/ic_action_save.png differ
+[1mdiff --git a/app/src/main/res/drawable-mdpi/ic_action_spread.png b/app/src/main/res/drawable-mdpi/ic_action_spread.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..6bdb374[m
+Binary files /dev/null and b/app/src/main/res/drawable-mdpi/ic_action_spread.png differ
+[1mdiff --git a/app/src/main/res/drawable-mdpi/ic_action_undo.png b/app/src/main/res/drawable-mdpi/ic_action_undo.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..6e75a9b[m
+Binary files /dev/null and b/app/src/main/res/drawable-mdpi/ic_action_undo.png differ
+[1mdiff --git a/app/src/main/res/drawable-mdpi/ic_apply_event.png b/app/src/main/res/drawable-mdpi/ic_apply_event.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..bc6819b[m
+Binary files /dev/null and b/app/src/main/res/drawable-mdpi/ic_apply_event.png differ
+[1mdiff --git a/app/src/main/res/drawable-mdpi/ic_drawer.png b/app/src/main/res/drawable-mdpi/ic_drawer.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..1ed2c56[m
+Binary files /dev/null and b/app/src/main/res/drawable-mdpi/ic_drawer.png differ
+[1mdiff --git a/app/src/main/res/drawable-mdpi/ic_drawer_shadow.9.png b/app/src/main/res/drawable-mdpi/ic_drawer_shadow.9.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..ffe3a28[m
+Binary files /dev/null and b/app/src/main/res/drawable-mdpi/ic_drawer_shadow.9.png differ
+[1mdiff --git a/app/src/main/res/drawable-mdpi/ic_events_calendar.png b/app/src/main/res/drawable-mdpi/ic_events_calendar.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..3d808c9[m
+Binary files /dev/null and b/app/src/main/res/drawable-mdpi/ic_events_calendar.png differ
+[1mdiff --git a/app/src/main/res/drawable-mdpi/ic_launcher.png b/app/src/main/res/drawable-mdpi/ic_launcher.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..6b69b01[m
+Binary files /dev/null and b/app/src/main/res/drawable-mdpi/ic_launcher.png differ
+[1mdiff --git a/app/src/main/res/drawable-mdpi/ic_metal_3d_dollar.png b/app/src/main/res/drawable-mdpi/ic_metal_3d_dollar.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..557f781[m
+Binary files /dev/null and b/app/src/main/res/drawable-mdpi/ic_metal_3d_dollar.png differ
+[1mdiff --git a/app/src/main/res/drawable-mdpi/ic_metal_gears.png b/app/src/main/res/drawable-mdpi/ic_metal_gears.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c023c5e[m
+Binary files /dev/null and b/app/src/main/res/drawable-mdpi/ic_metal_gears.png differ
+[1mdiff --git a/app/src/main/res/drawable-mdpi/ic_none_exist.png b/app/src/main/res/drawable-mdpi/ic_none_exist.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9815dc0[m
+Binary files /dev/null and b/app/src/main/res/drawable-mdpi/ic_none_exist.png differ
+[1mdiff --git a/app/src/main/res/drawable-mdpi/side_nav_bar.xml b/app/src/main/res/drawable-mdpi/side_nav_bar.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..bf1e9c3[m
+[1m--- /dev/null[m
+[1m+++ b/app/src/main/res/drawable-mdpi/side_nav_bar.xml[m
+[36m@@ -0,0 +1,9 @@[m
+[32m+[m[32m<shape xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    android:shape="rectangle">[m
+[32m+[m[32m    <gradient[m
+[32m+[m[32m        android:angle="135"[m
+[32m+[m[32m        android:centerColor="@color/colorPrimaryDark"[m
+[32m+[m[32m        android:endColor="@color/colorPrimary"[m
+[32m+[m[32m        android:startColor="@color/colorAccent"[m
+[32m+[m[32m        android:type="linear" />[m
+[32m+[m[32m</shape>[m
+\ No newline at end of file[m
+[1mdiff --git a/app/src/main/res/drawable-xhdpi/ic_action_accept.png b/app/src/main/res/drawable-xhdpi/ic_action_accept.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..6c235cf[m
+Binary files /dev/null and b/app/src/main/res/drawable-xhdpi/ic_action_accept.png differ
+[1mdiff --git a/app/src/main/res/drawable-xhdpi/ic_action_adjust.png b/app/src/main/res/drawable-xhdpi/ic_action_adjust.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e4073f1[m
+Binary files /dev/null and b/app/src/main/res/drawable-xhdpi/ic_action_adjust.png differ
+[1mdiff --git a/app/src/main/res/drawable-xhdpi/ic_action_cancel.png b/app/src/main/res/drawable-xhdpi/ic_action_cancel.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..58e2e3b[m
+Binary files /dev/null and b/app/src/main/res/drawable-xhdpi/ic_action_cancel.png differ
+[1mdiff --git a/app/src/main/res/drawable-xhdpi/ic_action_edit.png b/app/src/main/res/drawable-xhdpi/ic_action_edit.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..8ab436d[m
+Binary files /dev/null and b/app/src/main/res/drawable-xhdpi/ic_action_edit.png differ
+[1mdiff --git a/app/src/main/res/drawable-xhdpi/ic_action_new.png b/app/src/main/res/drawable-xhdpi/ic_action_new.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..6038bee[m
+Binary files /dev/null and b/app/src/main/res/drawable-xhdpi/ic_action_new.png differ
+[1mdiff --git a/app/src/main/res/drawable-xhdpi/ic_action_overflow.png b/app/src/main/res/drawable-xhdpi/ic_action_overflow.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..799c35c[m
+Binary files /dev/null and b/app/src/main/res/drawable-xhdpi/ic_action_overflow.png differ
+[1mdiff --git a/app/src/main/res/drawable-xhdpi/ic_action_remove.png b/app/src/main/res/drawable-xhdpi/ic_action_remove.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..db69d6c[m
+Binary files /dev/null and b/app/src/main/res/drawable-xhdpi/ic_action_remove.png differ
+[1mdiff --git a/app/src/main/res/drawable-xhdpi/ic_action_save.png b/app/src/main/res/drawable-xhdpi/ic_action_save.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..29c5f4d[m
+Binary files /dev/null and b/app/src/main/res/drawable-xhdpi/ic_action_save.png differ
+[1mdiff --git a/app/src/main/res/drawable-xhdpi/ic_action_spread.png b/app/src/main/res/drawable-xhdpi/ic_action_spread.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c86ad77[m
+Binary files /dev/null and b/app/src/main/res/drawable-xhdpi/ic_action_spread.png differ
+[1mdiff --git a/app/src/main/res/drawable-xhdpi/ic_action_undo.png b/app/src/main/res/drawable-xhdpi/ic_action_undo.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..a6d35d8[m
+Binary files /dev/null and b/app/src/main/res/drawable-xhdpi/ic_action_undo.png differ
+[1mdiff --git a/app/src/main/res/drawable-xhdpi/ic_apply_event.png b/app/src/main/res/drawable-xhdpi/ic_apply_event.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..d68c408[m
+Binary files /dev/null and b/app/src/main/res/drawable-xhdpi/ic_apply_event.png differ
+[1mdiff --git a/app/src/main/res/drawable-xhdpi/ic_drawer.png b/app/src/main/res/drawable-xhdpi/ic_drawer.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..a5fa74d[m
+Binary files /dev/null and b/app/src/main/res/drawable-xhdpi/ic_drawer.png differ
+[1mdiff --git a/app/src/main/res/drawable-xhdpi/ic_drawer_shadow.9.png b/app/src/main/res/drawable-xhdpi/ic_drawer_shadow.9.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..fabe9d9[m
+Binary files /dev/null and b/app/src/main/res/drawable-xhdpi/ic_drawer_shadow.9.png differ
+[1mdiff --git a/app/src/main/res/drawable-xhdpi/ic_events_calendar.png b/app/src/main/res/drawable-xhdpi/ic_events_calendar.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..70e66da[m
+Binary files /dev/null and b/app/src/main/res/drawable-xhdpi/ic_events_calendar.png differ
+[1mdiff --git a/app/src/main/res/drawable-xhdpi/ic_launcher.png b/app/src/main/res/drawable-xhdpi/ic_launcher.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..94fcf7c[m
+Binary files /dev/null and b/app/src/main/res/drawable-xhdpi/ic_launcher.png differ
+[1mdiff --git a/app/src/main/res/drawable-xhdpi/ic_metal_3d_dollar.png b/app/src/main/res/drawable-xhdpi/ic_metal_3d_dollar.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..87d0d0f[m
+Binary files /dev/null and b/app/src/main/res/drawable-xhdpi/ic_metal_3d_dollar.png differ
+[1mdiff --git a/app/src/main/res/drawable-xhdpi/ic_metal_gears.png b/app/src/main/res/drawable-xhdpi/ic_metal_gears.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..246a05f[m
+Binary files /dev/null and b/app/src/main/res/drawable-xhdpi/ic_metal_gears.png differ
+[1mdiff --git a/app/src/main/res/drawable-xhdpi/ic_none_exist.png b/app/src/main/res/drawable-xhdpi/ic_none_exist.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..645a848[m
+Binary files /dev/null and b/app/src/main/res/drawable-xhdpi/ic_none_exist.png differ
+[1mdiff --git a/app/src/main/res/drawable-xxhdpi/ic_action_accept.png b/app/src/main/res/drawable-xxhdpi/ic_action_accept.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..6fda89e[m
+Binary files /dev/null and b/app/src/main/res/drawable-xxhdpi/ic_action_accept.png differ
+[1mdiff --git a/app/src/main/res/drawable-xxhdpi/ic_action_adjust.png b/app/src/main/res/drawable-xxhdpi/ic_action_adjust.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..010e494[m
+Binary files /dev/null and b/app/src/main/res/drawable-xxhdpi/ic_action_adjust.png differ
+[1mdiff --git a/app/src/main/res/drawable-xxhdpi/ic_action_cancel.png b/app/src/main/res/drawable-xxhdpi/ic_action_cancel.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..a9bbcde[m
+Binary files /dev/null and b/app/src/main/res/drawable-xxhdpi/ic_action_cancel.png differ
+[1mdiff --git a/app/src/main/res/drawable-xxhdpi/ic_action_edit.png b/app/src/main/res/drawable-xxhdpi/ic_action_edit.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..f2b2078[m
+Binary files /dev/null and b/app/src/main/res/drawable-xxhdpi/ic_action_edit.png differ
+[1mdiff --git a/app/src/main/res/drawable-xxhdpi/ic_action_new.png b/app/src/main/res/drawable-xxhdpi/ic_action_new.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c0cd3d9[m
+Binary files /dev/null and b/app/src/main/res/drawable-xxhdpi/ic_action_new.png differ
+[1mdiff --git a/app/src/main/res/drawable-xxhdpi/ic_action_remove.png b/app/src/main/res/drawable-xxhdpi/ic_action_remove.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..b522daf[m
+Binary files /dev/null and b/app/src/main/res/drawable-xxhdpi/ic_action_remove.png differ
+[1mdiff --git a/app/src/main/res/drawable-xxhdpi/ic_action_save.png b/app/src/main/res/drawable-xxhdpi/ic_action_save.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..7443500[m
+Binary files /dev/null and b/app/src/main/res/drawable-xxhdpi/ic_action_save.png differ
+[1mdiff --git a/app/src/main/res/drawable-xxhdpi/ic_action_spread.png b/app/src/main/res/drawable-xxhdpi/ic_action_spread.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..06451d3[m
+Binary files /dev/null and b/app/src/main/res/drawable-xxhdpi/ic_action_spread.png differ
+[1mdiff --git a/app/src/main/res/drawable-xxhdpi/ic_action_undo.png b/app/src/main/res/drawable-xxhdpi/ic_action_undo.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..1a5f9f0[m
+Binary files /dev/null and b/app/src/main/res/drawable-xxhdpi/ic_action_undo.png differ
+[1mdiff --git a/app/src/main/res/drawable-xxhdpi/ic_apply_event.png b/app/src/main/res/drawable-xxhdpi/ic_apply_event.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..1bd94d5[m
+Binary files /dev/null and b/app/src/main/res/drawable-xxhdpi/ic_apply_event.png differ
+[1mdiff --git a/app/src/main/res/drawable-xxhdpi/ic_drawer.png b/app/src/main/res/drawable-xxhdpi/ic_drawer.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9c4685d[m
+Binary files /dev/null and b/app/src/main/res/drawable-xxhdpi/ic_drawer.png differ
+[1mdiff --git a/app/src/main/res/drawable-xxhdpi/ic_drawer_shadow.9.png b/app/src/main/res/drawable-xxhdpi/ic_drawer_shadow.9.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..b91e9d7[m
+Binary files /dev/null and b/app/src/main/res/drawable-xxhdpi/ic_drawer_shadow.9.png differ
+[1mdiff --git a/app/src/main/res/drawable-xxhdpi/ic_events_calendar.png b/app/src/main/res/drawable-xxhdpi/ic_events_calendar.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..3b7b407[m
+Binary files /dev/null and b/app/src/main/res/drawable-xxhdpi/ic_events_calendar.png differ
+[1mdiff --git a/app/src/main/res/drawable-xxhdpi/ic_launcher.png b/app/src/main/res/drawable-xxhdpi/ic_launcher.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..814f293[m
+Binary files /dev/null and b/app/src/main/res/drawable-xxhdpi/ic_launcher.png differ
+[1mdiff --git a/app/src/main/res/drawable-xxhdpi/ic_metal_3d_dollar.png b/app/src/main/res/drawable-xxhdpi/ic_metal_3d_dollar.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..86e89ea[m
+Binary files /dev/null and b/app/src/main/res/drawable-xxhdpi/ic_metal_3d_dollar.png differ
+[1mdiff --git a/app/src/main/res/drawable-xxhdpi/ic_metal_gears.png b/app/src/main/res/drawable-xxhdpi/ic_metal_gears.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..cfba0c6[m
+Binary files /dev/null and b/app/src/main/res/drawable-xxhdpi/ic_metal_gears.png differ
+[1mdiff --git a/app/src/main/res/drawable-xxhdpi/ic_none_exist.png b/app/src/main/res/drawable-xxhdpi/ic_none_exist.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..3fe9be3[m
+Binary files /dev/null and b/app/src/main/res/drawable-xxhdpi/ic_none_exist.png differ
+[1mdiff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c1d7caf[m
+[1m--- /dev/null[m
+[1m+++ b/app/src/main/res/layout/activity_main.xml[m
+[36m@@ -0,0 +1,34 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    xmlns:app="http://schemas.android.com/apk/res-auto"[m
+[32m+[m[32m    xmlns:tools="http://schemas.android.com/tools"[m
+[32m+[m[32m    android:layout_width="match_parent"[m
+[32m+[m[32m    android:layout_height="match_parent"[m
+[32m+[m[32m    android:fitsSystemWindows="true"[m
+[32m+[m[32m    tools:context="com.wamsware.www.proximitydetector.ProximityAlertActivity">[m
+[32m+[m
+[32m+[m[32m    <android.support.design.widget.AppBarLayout[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:theme="@style/AppTheme.AppBarOverlay">[m
+[32m+[m
+[32m+[m[32m        <android.support.v7.widget.Toolbar[m
+[32m+[m[32m            android:id="@+id/toolbar"[m
+[32m+[m[32m            android:layout_width="match_parent"[m
+[32m+[m[32m            android:layout_height="?attr/actionBarSize"[m
+[32m+[m[32m            android:background="?attr/colorPrimary"[m
+[32m+[m[32m            app:popupTheme="@style/AppTheme.PopupOverlay" />[m
+[32m+[m
+[32m+[m[32m    </android.support.design.widget.AppBarLayout>[m
+[32m+[m
+[32m+[m[32m    <include layout="@layout/content_main" />[m
+[32m+[m
+[32m+[m[32m    <android.support.design.widget.FloatingActionButton[m
+[32m+[m[32m        android:id="@+id/fab"[m
+[32m+[m[32m        android:layout_width="wrap_content"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:layout_gravity="bottom|end"[m
+[32m+[m[32m        android:layout_margin="@dimen/fab_margin"[m
+[32m+[m[32m        app:srcCompat="@android:drawable/ic_dialog_email" />[m
+[32m+[m
+[32m+[m[32m</android.support.design.widget.CoordinatorLayout>[m
+[1mdiff --git a/app/src/main/res/layout/content_main.xml b/app/src/main/res/layout/content_main.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c4f69fd[m
+[1m--- /dev/null[m
+[1m+++ b/app/src/main/res/layout/content_main.xml[m
+[36m@@ -0,0 +1,53 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    xmlns:app="http://schemas.android.com/apk/res-auto"[m
+[32m+[m[32m    xmlns:tools="http://schemas.android.com/tools"[m
+[32m+[m[32m    android:id="@+id/content_main"[m
+[32m+[m[32m    android:layout_width="match_parent"[m
+[32m+[m[32m    android:layout_height="match_parent"[m
+[32m+[m[32m    android:paddingBottom="@dimen/activity_vertical_margin"[m
+[32m+[m[32m    android:paddingLeft="@dimen/activity_horizontal_margin"[m
+[32m+[m[32m    android:paddingRight="@dimen/activity_horizontal_margin"[m
+[32m+[m[32m    android:paddingTop="@dimen/activity_vertical_margin"[m
+[32m+[m[32m    app:layout_behavior="@string/appbar_scrolling_view_behavior"[m
+[32m+[m[32m    tools:context="com.wamsware.www.proximitydetector.ProximityAlertActivity"[m
+[32m+[m[32m    tools:showIn="@layout/activity_main">[m
+[32m+[m
+[32m+[m[32m    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m        android:orientation="vertical"[m
+[32m+[m[32m        android:layout_width="fill_parent"[m
+[32m+[m[32m        android:layout_height="fill_parent"[m
+[32m+[m[32m        >[m
+[32m+[m
+[32m+[m[32m        <TextView[m
+[32m+[m[32m            android:id="@+id/point_latitude"[m
+[32m+[m[32m            android:layout_width="fill_parent"[m
+[32m+[m[32m            android:layout_height="wrap_content"[m
+[32m+[m[32m            android:layout_marginLeft="25dip"[m
+[32m+[m[32m            android:layout_marginRight="25dip"[m
+[32m+[m[32m            />[m
+[32m+[m
+[32m+[m[32m        <TextView[m
+[32m+[m[32m            android:id="@+id/point_longitude"[m
+[32m+[m[32m            android:layout_width="fill_parent"[m
+[32m+[m[32m            android:layout_height="wrap_content"[m
+[32m+[m[32m            android:layout_marginLeft="25dip"[m
+[32m+[m[32m            android:layout_marginRight="25dip"[m
+[32m+[m[32m            />[m
+[32m+[m
+[32m+[m[32m        <!--<Button-->[m
+[32m+[m[32m            <!--android:id="@+id/find_coordinates_button"-->[m
+[32m+[m[32m            <!--android:text="Find Coordinates"-->[m
+[32m+[m[32m            <!--android:layout_width="wrap_content"-->[m
+[32m+[m[32m            <!--android:layout_height="wrap_content"-->[m
+[32m+[m[32m            <!--/>-->[m
+[32m+[m
+[32m+[m[32m        <!--<Button-->[m
+[32m+[m[32m            <!--android:id="@+id/save_point_button"-->[m
+[32m+[m[32m            <!--android:text="Save Point"-->[m
+[32m+[m[32m            <!--android:layout_width="wrap_content"-->[m
+[32m+[m[32m            <!--android:layout_height="wrap_content"-->[m
+[32m+[m[32m            <!--/>-->[m
+[32m+[m
+[32m+[m[32m    </LinearLayout>[m
+[32m+[m[32m</RelativeLayout>[m
+[1mdiff --git a/app/src/main/res/menu/menu_main.xml b/app/src/main/res/menu/menu_main.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e91566f[m
+[1m--- /dev/null[m
+[1m+++ b/app/src/main/res/menu/menu_main.xml[m
+[36m@@ -0,0 +1,10 @@[m
+[32m+[m[32m<menu xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    xmlns:app="http://schemas.android.com/apk/res-auto"[m
+[32m+[m[32m    xmlns:tools="http://schemas.android.com/tools"[m
+[32m+[m[32m    tools:context="com.wamsware.www.proximitydetector.ProximityAlertActivity">[m
+[32m+[m[32m    <item[m
+[32m+[m[32m        android:id="@+id/action_settings"[m
+[32m+[m[32m        android:orderInCategory="100"[m
+[32m+[m[32m        android:title="@string/action_settings"[m
+[32m+[m[32m        app:showAsAction="never" />[m
+[32m+[m[32m</menu>[m
+[1mdiff --git a/app/src/main/res/mipmap-hdpi/ic_launcher.png b/app/src/main/res/mipmap-hdpi/ic_launcher.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..cde69bc[m
+Binary files /dev/null and b/app/src/main/res/mipmap-hdpi/ic_launcher.png differ
+[1mdiff --git a/app/src/main/res/mipmap-mdpi/ic_launcher.png b/app/src/main/res/mipmap-mdpi/ic_launcher.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c133a0c[m
+Binary files /dev/null and b/app/src/main/res/mipmap-mdpi/ic_launcher.png differ
+[1mdiff --git a/app/src/main/res/mipmap-xhdpi/ic_launcher.png b/app/src/main/res/mipmap-xhdpi/ic_launcher.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..bfa42f0[m
+Binary files /dev/null and b/app/src/main/res/mipmap-xhdpi/ic_launcher.png differ
+[1mdiff --git a/app/src/main/res/mipmap-xxhdpi/ic_launcher.png b/app/src/main/res/mipmap-xxhdpi/ic_launcher.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..324e72c[m
+Binary files /dev/null and b/app/src/main/res/mipmap-xxhdpi/ic_launcher.png differ
+[1mdiff --git a/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png b/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..aee44e1[m
+Binary files /dev/null and b/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png differ
+[1mdiff --git a/app/src/main/res/values-v21/styles.xml b/app/src/main/res/values-v21/styles.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..dbbdd40[m
+[1m--- /dev/null[m
+[1m+++ b/app/src/main/res/values-v21/styles.xml[m
+[36m@@ -0,0 +1,9 @@[m
+[32m+[m[32m<resources>[m
+[32m+[m
+[32m+[m[32m    <style name="AppTheme.NoActionBar">[m
+[32m+[m[32m        <item name="windowActionBar">false</item>[m
+[32m+[m[32m        <item name="windowNoTitle">true</item>[m
+[32m+[m[32m        <item name="android:windowDrawsSystemBarBackgrounds">true</item>[m
+[32m+[m[32m        <item name="android:statusBarColor">@android:color/transparent</item>[m
+[32m+[m[32m    </style>[m
+[32m+[m[32m</resources>[m
+[1mdiff --git a/app/src/main/res/values-w820dp/dimens.xml b/app/src/main/res/values-w820dp/dimens.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..63fc816[m
+[1m--- /dev/null[m
+[1m+++ b/app/src/main/res/values-w820dp/dimens.xml[m
+[36m@@ -0,0 +1,6 @@[m
+[32m+[m[32m<resources>[m
+[32m+[m[32m    <!-- Example customization of dimensions originally defined in res/values/dimens.xml[m
+[32m+[m[32m         (such as screen margins) for screens with more than 820dp of available width. This[m
+[32m+[m[32m         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). -->[m
+[32m+[m[32m    <dimen name="activity_horizontal_margin">64dp</dimen>[m
+[32m+[m[32m</resources>[m
+[1mdiff --git a/app/src/main/res/values/colors.xml b/app/src/main/res/values/colors.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..3ab3e9c[m
+[1m--- /dev/null[m
+[1m+++ b/app/src/main/res/values/colors.xml[m
+[36m@@ -0,0 +1,6 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<resources>[m
+[32m+[m[32m    <color name="colorPrimary">#3F51B5</color>[m
+[32m+[m[32m    <color name="colorPrimaryDark">#303F9F</color>[m
+[32m+[m[32m    <color name="colorAccent">#FF4081</color>[m
+[32m+[m[32m</resources>[m
+[1mdiff --git a/app/src/main/res/values/dimens.xml b/app/src/main/res/values/dimens.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..812cb7b[m
+[1m--- /dev/null[m
+[1m+++ b/app/src/main/res/values/dimens.xml[m
+[36m@@ -0,0 +1,6 @@[m
+[32m+[m[32m<resources>[m
+[32m+[m[32m    <!-- Default screen margins, per the Android Design guidelines. -->[m
+[32m+[m[32m    <dimen name="activity_horizontal_margin">16dp</dimen>[m
+[32m+[m[32m    <dimen name="activity_vertical_margin">16dp</dimen>[m
+[32m+[m[32m    <dimen name="fab_margin">16dp</dimen>[m
+[32m+[m[32m</resources>[m
+[1mdiff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..a07dea3[m
+[1m--- /dev/null[m
+[1m+++ b/app/src/main/res/values/strings.xml[m
+[36m@@ -0,0 +1,4 @@[m
+[32m+[m[32m<resources>[m
+[32m+[m[32m    <string name="app_name">ProximityDetector</string>[m
+[32m+[m[32m    <string name="action_settings">Settings</string>[m
+[32m+[m[32m</resources>[m
+[1mdiff --git a/app/src/main/res/values/styles.xml b/app/src/main/res/values/styles.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..545b9c6[m
+[1m--- /dev/null[m
+[1m+++ b/app/src/main/res/values/styles.xml[m
+[36m@@ -0,0 +1,20 @@[m
+[32m+[m[32m<resources>[m
+[32m+[m
+[32m+[m[32m    <!-- Base application theme. -->[m
+[32m+[m[32m    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">[m
+[32m+[m[32m        <!-- Customize your theme here. -->[m
+[32m+[m[32m        <item name="colorPrimary">@color/colorPrimary</item>[m
+[32m+[m[32m        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>[m
+[32m+[m[32m        <item name="colorAccent">@color/colorAccent</item>[m
+[32m+[m[32m    </style>[m
+[32m+[m
+[32m+[m[32m    <style name="AppTheme.NoActionBar">[m
+[32m+[m[32m        <item name="windowActionBar">false</item>[m
+[32m+[m[32m        <item name="windowNoTitle">true</item>[m
+[32m+[m[32m    </style>[m
+[32m+[m
+[32m+[m[32m    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />[m
+[32m+[m
+[32m+[m[32m    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />[m
+[32m+[m
+[32m+[m[32m</resources>[m
+[1mdiff --git a/app/src/test/java/com/wamsware/www/proximitydetector/ExampleUnitTest.java b/app/src/test/java/com/wamsware/www/proximitydetector/ExampleUnitTest.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..b63312f[m
+[1m--- /dev/null[m
+[1m+++ b/app/src/test/java/com/wamsware/www/proximitydetector/ExampleUnitTest.java[m
+[36m@@ -0,0 +1,17 @@[m
+[32m+[m[32mpackage com.wamsware.www.proximitydetector;[m
+[32m+[m
+[32m+[m[32mimport org.junit.Test;[m
+[32m+[m
+[32m+[m[32mimport static org.junit.Assert.*;[m
+[32m+[m
+[32m+[m[32m/**[m
+[32m+[m[32m * Example local unit test, which will execute on the development machine (host).[m
+[32m+[m[32m *[m
+[32m+[m[32m * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>[m
+[32m+[m[32m */[m
+[32m+[m[32mpublic class ExampleUnitTest {[m
+[32m+[m[32m    @Test[m
+[32m+[m[32m    public void addition_isCorrect() throws Exception {[m
+[32m+[m[32m        assertEquals(4, 2 + 2);[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/build.gradle b/build.gradle[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c20bca1[m
+[1m--- /dev/null[m
+[1m+++ b/build.gradle[m
+[36m@@ -0,0 +1,23 @@[m
+[32m+[m[32m// Top-level build file where you can add configuration options common to all sub-projects/modules.[m
+[32m+[m
+[32m+[m[32mbuildscript {[m
+[32m+[m[32m    repositories {[m
+[32m+[m[32m        jcenter()[m
+[32m+[m[32m    }[m
+[32m+[m[32m    dependencies {[m
+[32m+[m[32m        classpath 'com.android.tools.build:gradle:2.2.2'[m
+[32m+[m
+[32m+[m[32m        // NOTE: Do not place your application dependencies here; they belong[m
+[32m+[m[32m        // in the individual module build.gradle files[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mallprojects {[m
+[32m+[m[32m    repositories {[m
+[32m+[m[32m        jcenter()[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mtask clean(type: Delete) {[m
+[32m+[m[32m    delete rootProject.buildDir[m
+[32m+[m[32m}[m
+[1mdiff --git a/gradle.properties b/gradle.properties[m
+[1mnew file mode 100644[m
+[1mindex 0000000..aac7c9b[m
+[1m--- /dev/null[m
+[1m+++ b/gradle.properties[m
+[36m@@ -0,0 +1,17 @@[m
+[32m+[m[32m# Project-wide Gradle settings.[m
+[32m+[m
+[32m+[m[32m# IDE (e.g. Android Studio) users:[m
+[32m+[m[32m# Gradle settings configured through the IDE *will override*[m
+[32m+[m[32m# any settings specified in this file.[m
+[32m+[m
+[32m+[m[32m# For more details on how to configure your build environment visit[m
+[32m+[m[32m# http://www.gradle.org/docs/current/userguide/build_environment.html[m
+[32m+[m
+[32m+[m[32m# Specifies the JVM arguments used for the daemon process.[m
+[32m+[m[32m# The setting is particularly useful for tweaking memory settings.[m
+[32m+[m[32morg.gradle.jvmargs=-Xmx1536m[m
+[32m+[m
+[32m+[m[32m# When configured, Gradle will run in incubating parallel mode.[m
+[32m+[m[32m# This option should only be used with decoupled projects. More details, visit[m
+[32m+[m[32m# http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects[m
+[32m+[m[32m# org.gradle.parallel=true[m
+[1mdiff --git a/gradle/wrapper/gradle-wrapper.jar b/gradle/wrapper/gradle-wrapper.jar[m
+[1mnew file mode 100644[m
+[1mindex 0000000..13372ae[m
+Binary files /dev/null and b/gradle/wrapper/gradle-wrapper.jar differ
+[1mdiff --git a/gradle/wrapper/gradle-wrapper.properties b/gradle/wrapper/gradle-wrapper.properties[m
+[1mnew file mode 100644[m
+[1mindex 0000000..04e285f[m
+[1m--- /dev/null[m
+[1m+++ b/gradle/wrapper/gradle-wrapper.properties[m
+[36m@@ -0,0 +1,6 @@[m
+[32m+[m[32m#Mon Dec 28 10:00:20 PST 2015[m
+[32m+[m[32mdistributionBase=GRADLE_USER_HOME[m
+[32m+[m[32mdistributionPath=wrapper/dists[m
+[32m+[m[32mzipStoreBase=GRADLE_USER_HOME[m
+[32m+[m[32mzipStorePath=wrapper/dists[m
+[32m+[m[32mdistributionUrl=https\://services.gradle.org/distributions/gradle-2.14.1-all.zip[m
+[1mdiff --git a/gradlew b/gradlew[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9d82f78[m
+[1m--- /dev/null[m
+[1m+++ b/gradlew[m
+[36m@@ -0,0 +1,160 @@[m
+[32m+[m[32m#!/usr/bin/env bash[m
+[32m+[m
+[32m+[m[32m##############################################################################[m
+[32m+[m[32m##[m
+[32m+[m[32m##  Gradle start up script for UN*X[m
+[32m+[m[32m##[m
+[32m+[m[32m##############################################################################[m
+[32m+[m
+[32m+[m[32m# Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.[m
+[32m+[m[32mDEFAULT_JVM_OPTS=""[m
+[32m+[m
+[32m+[m[32mAPP_NAME="Gradle"[m
+[32m+[m[32mAPP_BASE_NAME=`basename "$0"`[m
+[32m+[m
+[32m+[m[32m# Use the maximum available, or set MAX_FD != -1 to use that value.[m
+[32m+[m[32mMAX_FD="maximum"[m
+[32m+[m
+[32m+[m[32mwarn ( ) {[m
+[32m+[m[32m    echo "$*"[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mdie ( ) {[m
+[32m+[m[32m    echo[m
+[32m+[m[32m    echo "$*"[m
+[32m+[m[32m    echo[m
+[32m+[m[32m    exit 1[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32m# OS specific support (must be 'true' or 'false').[m
+[32m+[m[32mcygwin=false[m
+[32m+[m[32mmsys=false[m
+[32m+[m[32mdarwin=false[m
+[32m+[m[32mcase "`uname`" in[m
+[32m+[m[32m  CYGWIN* )[m
+[32m+[m[32m    cygwin=true[m
+[32m+[m[32m    ;;[m
+[32m+[m[32m  Darwin* )[m
+[32m+[m[32m    darwin=true[m
+[32m+[m[32m    ;;[m
+[32m+[m[32m  MINGW* )[m
+[32m+[m[32m    msys=true[m
+[32m+[m[32m    ;;[m
+[32m+[m[32mesac[m
+[32m+[m
+[32m+[m[32m# Attempt to set APP_HOME[m
+[32m+[m[32m# Resolve links: $0 may be a link[m
+[32m+[m[32mPRG="$0"[m
+[32m+[m[32m# Need this for relative symlinks.[m
+[32m+[m[32mwhile [ -h "$PRG" ] ; do[m
+[32m+[m[32m    ls=`ls -ld "$PRG"`[m
+[32m+[m[32m    link=`expr "$ls" : '.*-> \(.*\)$'`[m
+[32m+[m[32m    if expr "$link" : '/.*' > /dev/null; then[m
+[32m+[m[32m        PRG="$link"[m
+[32m+[m[32m    else[m
+[32m+[m[32m        PRG=`dirname "$PRG"`"/$link"[m
+[32m+[m[32m    fi[m
+[32m+[m[32mdone[m
+[32m+[m[32mSAVED="`pwd`"[m
+[32m+[m[32mcd "`dirname \"$PRG\"`/" >/dev/null[m
+[32m+[m[32mAPP_HOME="`pwd -P`"[m
+[32m+[m[32mcd "$SAVED" >/dev/null[m
+[32m+[m
+[32m+[m[32mCLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar[m
+[32m+[m
+[32m+[m[32m# Determine the Java command to use to start the JVM.[m
+[32m+[m[32mif [ -n "$JAVA_HOME" ] ; then[m
+[32m+[m[32m    if [ -x "$JAVA_HOME/jre/sh/java" ] ; then[m
+[32m+[m[32m        # IBM's JDK on AIX uses strange locations for the executables[m
+[32m+[m[32m        JAVACMD="$JAVA_HOME/jre/sh/java"[m
+[32m+[m[32m    else[m
+[32m+[m[32m        JAVACMD="$JAVA_HOME/bin/java"[m
+[32m+[m[32m    fi[m
+[32m+[m[32m    if [ ! -x "$JAVACMD" ] ; then[m
+[32m+[m[32m        die "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME[m
+[32m+[m
+[32m+[m[32mPlease set the JAVA_HOME variable in your environment to match the[m
+[32m+[m[32mlocation of your Java installation."[m
+[32m+[m[32m    fi[m
+[32m+[m[32melse[m
+[32m+[m[32m    JAVACMD="java"[m
+[32m+[m[32m    which java >/dev/null 2>&1 || die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.[m
+[32m+[m
+[32m+[m[32mPlease set the JAVA_HOME variable in your environment to match the[m
+[32m+[m[32mlocation of your Java installation."[m
+[32m+[m[32mfi[m
+[32m+[m
+[32m+[m[32m# Increase the maximum file descriptors if we can.[m
+[32m+[m[32mif [ "$cygwin" = "false" -a "$darwin" = "false" ] ; then[m
+[32m+[m[32m    MAX_FD_LIMIT=`ulimit -H -n`[m
+[32m+[m[32m    if [ $? -eq 0 ] ; then[m
+[32m+[m[32m        if [ "$MAX_FD" = "maximum" -o "$MAX_FD" = "max" ] ; then[m
+[32m+[m[32m            MAX_FD="$MAX_FD_LIMIT"[m
+[32m+[m[32m        fi[m
+[32m+[m[32m        ulimit -n $MAX_FD[m
+[32m+[m[32m        if [ $? -ne 0 ] ; then[m
+[32m+[m[32m            warn "Could not set maximum file descriptor limit: $MAX_FD"[m
+[32m+[m[32m        fi[m
+[32m+[m[32m    else[m
+[32m+[m[32m        warn "Could not query maximum file descriptor limit: $MAX_FD_LIMIT"[m
+[32m+[m[32m    fi[m
+[32m+[m[32mfi[m
+[32m+[m
+[32m+[m[32m# For Darwin, add options to specify how the application appears in the dock[m
+[32m+[m[32mif $darwin; then[m
+[32m+[m[32m    GRADLE_OPTS="$GRADLE_OPTS \"-Xdock:name=$APP_NAME\" \"-Xdock:icon=$APP_HOME/media/gradle.icns\""[m
+[32m+[m[32mfi[m
+[32m+[m
+[32m+[m[32m# For Cygwin, switch paths to Windows format before running java[m
+[32m+[m[32mif $cygwin ; then[m
+[32m+[m[32m    APP_HOME=`cygpath --path --mixed "$APP_HOME"`[m
+[32m+[m[32m    CLASSPATH=`cygpath --path --mixed "$CLASSPATH"`[m
+[32m+[m[32m    JAVACMD=`cygpath --unix "$JAVACMD"`[m
+[32m+[m
+[32m+[m[32m    # We build the pattern for arguments to be converted via cygpath[m
+[32m+[m[32m    ROOTDIRSRAW=`find -L / -maxdepth 1 -mindepth 1 -type d 2>/dev/null`[m
+[32m+[m[32m    SEP=""[m
+[32m+[m[32m    for dir in $ROOTDIRSRAW ; do[m
+[32m+[m[32m        ROOTDIRS="$ROOTDIRS$SEP$dir"[m
+[32m+[m[32m        SEP="|"[m
+[32m+[m[32m    done[m
+[32m+[m[32m    OURCYGPATTERN="(^($ROOTDIRS))"[m
+[32m+[m[32m    # Add a user-defined pattern to the cygpath arguments[m
+[32m+[m[32m    if [ "$GRADLE_CYGPATTERN" != "" ] ; then[m
+[32m+[m[32m        OURCYGPATTERN="$OURCYGPATTERN|($GRADLE_CYGPATTERN)"[m
+[32m+[m[32m    fi[m
+[32m+[m[32m    # Now convert the arguments - kludge to limit ourselves to /bin/sh[m
+[32m+[m[32m    i=0[m
+[32m+[m[32m    for arg in "$@" ; do[m
+[32m+[m[32m        CHECK=`echo "$arg"|egrep -c "$OURCYGPATTERN" -`[m
+[32m+[m[32m        CHECK2=`echo "$arg"|egrep -c "^-"`                                 ### Determine if an option[m
+[32m+[m
+[32m+[m[32m        if [ $CHECK -ne 0 ] && [ $CHECK2 -eq 0 ] ; then                    ### Added a condition[m
+[32m+[m[32m            eval `echo args$i`=`cygpath --path --ignore --mixed "$arg"`[m
+[32m+[m[32m        else[m
+[32m+[m[32m            eval `echo args$i`="\"$arg\""[m
+[32m+[m[32m        fi[m
+[32m+[m[32m        i=$((i+1))[m
+[32m+[m[32m    done[m
+[32m+[m[32m    case $i in[m
+[32m+[m[32m        (0) set -- ;;[m
+[32m+[m[32m        (1) set -- "$args0" ;;[m
+[32m+[m[32m        (2) set -- "$args0" "$args1" ;;[m
+[32m+[m[32m        (3) set -- "$args0" "$args1" "$args2" ;;[m
+[32m+[m[32m        (4) set -- "$args0" "$args1" "$args2" "$args3" ;;[m
+[32m+[m[32m        (5) set -- "$args0" "$args1" "$args2" "$args3" "$args4" ;;[m
+[32m+[m[32m        (6) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" ;;[m
+[32m+[m[32m        (7) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" ;;[m
+[32m+[m[32m        (8) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" "$args7" ;;[m
+[32m+[m[32m        (9) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" "$args7" "$args8" ;;[m
+[32m+[m[32m    esac[m
+[32m+[m[32mfi[m
+[32m+[m
+[32m+[m[32m# Split up the JVM_OPTS And GRADLE_OPTS values into an array, following the shell quoting and substitution rules[m
+[32m+[m[32mfunction splitJvmOpts() {[m
+[32m+[m[32m    JVM_OPTS=("$@")[m
+[32m+[m[32m}[m
+[32m+[m[32meval splitJvmOpts $DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS[m
+[32m+[m[32mJVM_OPTS[${#JVM_OPTS[*]}]="-Dorg.gradle.appname=$APP_BASE_NAME"[m
+[32m+[m
+[32m+[m[32mexec "$JAVACMD" "${JVM_OPTS[@]}" -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"[m
+[1mdiff --git a/gradlew.bat b/gradlew.bat[m
+[1mnew file mode 100644[m
+[1mindex 0000000..8a0b282[m
+[1m--- /dev/null[m
+[1m+++ b/gradlew.bat[m
+[36m@@ -0,0 +1,90 @@[m
+[32m+[m[32m@if "%DEBUG%" == "" @echo off[m
+[32m+[m[32m@rem ##########################################################################[m
+[32m+[m[32m@rem[m
+[32m+[m[32m@rem  Gradle startup script for Windows[m
+[32m+[m[32m@rem[m
+[32m+[m[32m@rem ##########################################################################[m
+[32m+[m
+[32m+[m[32m@rem Set local scope for the variables with windows NT shell[m
+[32m+[m[32mif "%OS%"=="Windows_NT" setlocal[m
+[32m+[m
+[32m+[m[32m@rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.[m
+[32m+[m[32mset DEFAULT_JVM_OPTS=[m
+[32m+[m
+[32m+[m[32mset DIRNAME=%~dp0[m
+[32m+[m[32mif "%DIRNAME%" == "" set DIRNAME=.[m
+[32m+[m[32mset APP_BASE_NAME=%~n0[m
+[32m+[m[32mset APP_HOME=%DIRNAME%[m
+[32m+[m
+[32m+[m[32m@rem Find java.exe[m
+[32m+[m[32mif defined JAVA_HOME goto findJavaFromJavaHome[m
+[32m+[m
+[32m+[m[32mset JAVA_EXE=java.exe[m
+[32m+[m[32m%JAVA_EXE% -version >NUL 2>&1[m
+[32m+[m[32mif "%ERRORLEVEL%" == "0" goto init[m
+[32m+[m
+[32m+[m[32mecho.[m
+[32m+[m[32mecho ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.[m
+[32m+[m[32mecho.[m
+[32m+[m[32mecho Please set the JAVA_HOME variable in your environment to match the[m
+[32m+[m[32mecho location of your Java installation.[m
+[32m+[m
+[32m+[m[32mgoto fail[m
+[32m+[m
+[32m+[m[32m:findJavaFromJavaHome[m
+[32m+[m[32mset JAVA_HOME=%JAVA_HOME:"=%[m
+[32m+[m[32mset JAVA_EXE=%JAVA_HOME%/bin/java.exe[m
+[32m+[m
+[32m+[m[32mif exist "%JAVA_EXE%" goto init[m
+[32m+[m
+[32m+[m[32mecho.[m
+[32m+[m[32mecho ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME%[m
+[32m+[m[32mecho.[m
+[32m+[m[32mecho Please set the JAVA_HOME variable in your environment to match the[m
+[32m+[m[32mecho location of your Java installation.[m
+[32m+[m
+[32m+[m[32mgoto fail[m
+[32m+[m
+[32m+[m[32m:init[m
+[32m+[m[32m@rem Get command-line arguments, handling Windowz variants[m
+[32m+[m
+[32m+[m[32mif not "%OS%" == "Windows_NT" goto win9xME_args[m
+[32m+[m[32mif "%@eval[2+2]" == "4" goto 4NT_args[m
+[32m+[m
+[32m+[m[32m:win9xME_args[m
+[32m+[m[32m@rem Slurp the command line arguments.[m
+[32m+[m[32mset CMD_LINE_ARGS=[m
+[32m+[m[32mset _SKIP=2[m
+[32m+[m
+[32m+[m[32m:win9xME_args_slurp[m
+[32m+[m[32mif "x%~1" == "x" goto execute[m
+[32m+[m
+[32m+[m[32mset CMD_LINE_ARGS=%*[m
+[32m+[m[32mgoto execute[m
+[32m+[m
+[32m+[m[32m:4NT_args[m
+[32m+[m[32m@rem Get arguments from the 4NT Shell from JP Software[m
+[32m+[m[32mset CMD_LINE_ARGS=%$[m
+[32m+[m
+[32m+[m[32m:execute[m
+[32m+[m[32m@rem Setup the command line[m
+[32m+[m
+[32m+[m[32mset CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar[m
+[32m+[m
+[32m+[m[32m@rem Execute Gradle[m
+[32m+[m[32m"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %CMD_LINE_ARGS%[m
+[32m+[m
+[32m+[m[32m:end[m
+[32m+[m[32m@rem End local scope for the variables with windows NT shell[m
+[32m+[m[32mif "%ERRORLEVEL%"=="0" goto mainEnd[m
+[32m+[m
+[32m+[m[32m:fail[m
+[32m+[m[32mrem Set variable GRADLE_EXIT_CONSOLE if you need the _script_ return code instead of[m
+[32m+[m[32mrem the _cmd.exe /c_ return code![m
+[32m+[m[32mif  not "" == "%GRADLE_EXIT_CONSOLE%" exit 1[m
+[32m+[m[32mexit /b 1[m
+[32m+[m
+[32m+[m[32m:mainEnd[m
+[32m+[m[32mif "%OS%"=="Windows_NT" endlocal[m
+[32m+[m
+[32m+[m[32m:omega[m
+[1mdiff --git a/settings.gradle b/settings.gradle[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e7b4def[m
+[1m--- /dev/null[m
+[1m+++ b/settings.gradle[m
+[36m@@ -0,0 +1 @@[m
+[32m+[m[32minclude ':app'[m
