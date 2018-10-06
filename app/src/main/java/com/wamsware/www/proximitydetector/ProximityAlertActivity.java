@@ -3,7 +3,6 @@ package com.wamsware.www.proximitydetector;
 import android.Manifest;
 import android.app.PendingIntent;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -15,15 +14,18 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Result;
 import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.Geofence;
+import com.google.android.gms.location.GeofencingClient;
 import com.google.android.gms.location.GeofencingRequest;
+import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,21 +36,19 @@ import static com.google.android.gms.location.GeofenceStatusCodes.GEOFENCE_TOO_M
 import static com.google.android.gms.location.GeofenceStatusCodes.GEOFENCE_TOO_MANY_PENDING_INTENTS;
 
 
-public class ProximityAlertActivity extends AppCompatActivity
-        implements GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks,
-        com.google.android.gms.location.LocationListener,
-        ResultCallback {
+public class ProximityAlertActivity extends AppCompatActivity {
 
-    public static final int REQUEST_GOOGLE_SERVICES_CONNECT_RESOLVE_ERROR = 1001;
     public static final int REQUEST_CHECK_SETTINGS = 1002; // Check permissions from location request
     private static final int PERMISSIONS_REQUEST_FINE_LOCATION = 1;
-    private static final int GEOFENCE_RADIUS_IN_METERS = 100;
-//    private static final int GEOFENCE_EXPIRATION_IN_MILLISECONDS = 3000000; // 5 minutes
-    private static final int GEOFENCE_LOITERING_DELAY_MILLISECONDS = 500;
-    private static final int GEOFENCE_NOTFICATION_RESPONSE_MILLISECONDS = 500;
+    private static final int GEOFENCE_RADIUS_IN_METERS = 10;
 
     protected LocationRequest mLocationRequest = null;
-    protected GoogleApiClient mGoogleApiClient = null;
+    private GeofencingClient mGeofencingClient;
+    private FusedLocationProviderClient mFusedLocationClient;
+
+    private LocationCallback mLocationCallback;
+
+    private boolean mRequestingLocationUpdates = false;
 
     private TextView mLattitudeTextView;
     private TextView mLongitudeTextView;
@@ -61,30 +61,66 @@ public class ProximityAlertActivity extends AppCompatActivity
 
     private List<Geofence> mGeofenceList;
 
+    private ProximityAlertActivity mThis;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        updateValuesFromBundle(savedInstanceState);
+
+        // In this prototype, always request location updates
+        // ... control the flag as needed in a real implementation to
+        // help preserve battery life
+        mRequestingLocationUpdates = true;
+
+        mThis = this;
+
         setContentView(R.layout.activity_main);
 
-        mGeofenceList = new ArrayList<Geofence>();
+        // Leads to onRequestPermissionsResult() with PERMISSIONS_REQUEST_FINE_LOCAIONT
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                PERMISSIONS_REQUEST_FINE_LOCATION);
 
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(LocationServices.API)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .build();
+        mGeofenceList = new ArrayList<>();
 
-        mLattitudeTextView = (TextView) findViewById(R.id.point_latitude);
-        mLongitudeTextView = (TextView )findViewById(R.id.point_longitude);
+        mGeofencingClient = LocationServices.getGeofencingClient(this);
 
-        mEnableGeofenceButton = (Button)findViewById(R.id.button_enable_geofence_monitoring);
-        mDisableGeofenceButton = (Button)findViewById(R.id.button_disable_geofence_monitoring);
+        mFusedLocationClient =
+                LocationServices.getFusedLocationProviderClient(this);
+
+        mLocationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                if (locationResult == null) {
+                    return;
+                }
+                for (Location location : locationResult.getLocations()) {
+                    // Update UI with location data
+                    // ...
+                    mLattitude = location.getLatitude();
+                    mLongitude = location.getLongitude();
+                    mLattitudeTextView.setText(String.valueOf(mLattitude));
+                    mLongitudeTextView.setText(String.valueOf(mLongitude));
+                }
+            }
+        };
+
+        mLattitudeTextView = findViewById(R.id.point_latitude);
+        mLongitudeTextView = findViewById(R.id.point_longitude);
+
+        mEnableGeofenceButton = findViewById(R.id.button_enable_geofence_monitoring);
+        mDisableGeofenceButton = findViewById(R.id.button_disable_geofence_monitoring);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        if (mRequestingLocationUpdates) {
+            startLocationUpdates();
+        }
 
         if (!mEnableGeofenceButton.hasOnClickListeners()) {
             mEnableGeofenceButton.setOnClickListener(new View.OnClickListener() {
@@ -102,14 +138,24 @@ public class ProximityAlertActivity extends AppCompatActivity
                             .setExpirationDuration(NEVER_EXPIRE)
                             .setCircularRegion(mLattitude, mLongitude, GEOFENCE_RADIUS_IN_METERS)
                             .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER |
-                                                    Geofence.GEOFENCE_TRANSITION_EXIT)
+                                    Geofence.GEOFENCE_TRANSITION_EXIT)
                             .build());
 
-                    LocationServices.GeofencingApi.addGeofences(
-                            mGoogleApiClient,
-                            getGeofencingRequest(),
-                            getGeofencePendingIntent()
-                    ).setResultCallback(ProximityAlertActivity.this);
+                    mGeofencingClient.addGeofences(getGeofencingRequest(), getGeofencePendingIntent())
+                            .addOnSuccessListener(mThis, new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    // Geofences added
+                                    // ...
+                                }
+                            })
+                            .addOnFailureListener(mThis, new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    // Failed to add geofences
+                                    // ...
+                                }
+                            });
                 }
             });
         }
@@ -118,40 +164,66 @@ public class ProximityAlertActivity extends AppCompatActivity
             mDisableGeofenceButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    LocationServices.GeofencingApi.removeGeofences(
-                            mGoogleApiClient,
-                            // This is the same pending intent that was used in addGeofences().
-                            getGeofencePendingIntent()
-                    ).setResultCallback(ProximityAlertActivity.this); // Result processed in onResult().
+
+                    mGeofencingClient.removeGeofences(getGeofencePendingIntent())
+                        .addOnSuccessListener(mThis, new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Geofences removed
+                                // ...
+                            }
+                        })
+                        .addOnFailureListener(mThis, new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // Failed to remove geofences
+                                // ...
+                            }
+                        });
                 }
             });
-        }
-
-        if (mGoogleApiClient != null) {
-
-            if (!mGoogleApiClient.isConnecting()) {
-
-                if (!mGoogleApiClient.isConnected()) {
-                    mGoogleApiClient.connect();
-                } else {
-                    setupLocationManagement();
-                }
-            }
         }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        stopLocationUpdates();
     }
 
     @Override
-    public void onConnected(Bundle dataBundle) {
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putBoolean(getString(
+                R.string.instanceStateRequestingLocationUpdates),
+                mRequestingLocationUpdates);
 
-        // Leads to onRequestPermissionsResult() with PERMISSIONS_REQUEST_FINE_LOCAIONT
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                PERMISSIONS_REQUEST_FINE_LOCATION);
+        super.onSaveInstanceState(outState);
+    }
+
+    private void updateValuesFromBundle(Bundle savedInstanceState) {
+        if (savedInstanceState == null) {
+            return;
+        }
+
+        String requestingLocationUpdatesKey =
+                getString(R.string.instanceStateRequestingLocationUpdates);
+
+        // Update the value of mRequestingLocationUpdates from the Bundle.
+        if (savedInstanceState.keySet().contains(requestingLocationUpdatesKey)) {
+            mRequestingLocationUpdates = savedInstanceState.getBoolean(
+                    requestingLocationUpdatesKey);
+        }
+
+        // Update UI to match restored state
+        updateUI();
+    }
+
+    private void updateUI() {
+
+    }
+
+    private void stopLocationUpdates() {
+        mFusedLocationClient.removeLocationUpdates(mLocationCallback);
     }
 
     @Override
@@ -164,9 +236,7 @@ public class ProximityAlertActivity extends AppCompatActivity
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    setupLocationManagement();
                 } else {
-
                     // Disable the functionality that depends on this permission.
                 }
                 return;
@@ -175,50 +245,13 @@ public class ProximityAlertActivity extends AppCompatActivity
     }
 
     @Override
-    public void onConnectionSuspended(int i) {
-
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult result) {
-        if (result.hasResolution()) {
-            try {
-                result.startResolutionForResult(
-                        this, ProximityAlertActivity.REQUEST_GOOGLE_SERVICES_CONNECT_RESOLVE_ERROR);
-            } catch (IntentSender.SendIntentException e) {
-                // There was an error with the resolution intent. Try again.
-                mGoogleApiClient.connect();
-            }
-        } else {
-            GooglePlayServicesUtil.getErrorDialog(
-                    result.getErrorCode(), this, 0).show();
-        }
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-
-        mLattitude = location.getLatitude();
-        mLongitude = location.getLongitude();
-
-        mLongitudeTextView.setText(String.valueOf(mLongitude));
-        mLattitudeTextView.setText(String.valueOf(mLattitude));
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        switch(requestCode) {
+        switch (requestCode) {
 
             case REQUEST_CHECK_SETTINGS:
                 if (resultCode == AppCompatActivity.RESULT_OK) {
 
-                }
-                break;
-
-            case REQUEST_GOOGLE_SERVICES_CONNECT_RESOLVE_ERROR:
-                if (resultCode == AppCompatActivity.RESULT_OK) {
-                    mGoogleApiClient.connect();
                 }
                 break;
 
@@ -227,8 +260,17 @@ public class ProximityAlertActivity extends AppCompatActivity
         }
     }
 
-    @SuppressWarnings("MissingPermission")
-    private void setupLocationManagement() {
+    private void startLocationUpdates() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
 
         if (mLocationRequest == null) {
             mLocationRequest = new LocationRequest();
@@ -238,49 +280,18 @@ public class ProximityAlertActivity extends AppCompatActivity
         mLocationRequest.setFastestInterval(1);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
-
-        LocationServices.FusedLocationApi.requestLocationUpdates(
-                mGoogleApiClient, mLocationRequest, ProximityAlertActivity.this);
+        mFusedLocationClient.requestLocationUpdates(mLocationRequest,
+                mLocationCallback,
+                null /* Looper */);
     }
 
     private PendingIntent getGeofencePendingIntent() {
-//        // Reuse the PendingIntent if we already have it.
-//        if (mGeofencePendingIntent != null) {
-//            return mGeofencePendingIntent;
-//        }
 
         Intent intent = new Intent(this, GeofenceTransitionsIntentService.class);
         // We use FLAG_UPDATE_CURRENT so that we get the same pending intent back when
         // calling addGeofences() and removeGeofences().
         return PendingIntent.getService(this, 0, intent, PendingIntent.
                 FLAG_UPDATE_CURRENT);
-    }
-
-    //
-    // Handle results from geofences API
-    //
-    @Override
-    public void onResult(@NonNull Result result) {
-
-        if (!result.getStatus().isSuccess()) {
-
-
-            String msg = "Error: " + result.getStatus().getStatusMessage();
-            Toast.makeText(this, msg, Toast.LENGTH_SHORT);
-
-            // TODO: Add more detail to error notifications
-            switch (result.getStatus().getStatusCode()) {
-                case GEOFENCE_NOT_AVAILABLE:
-                    break;
-                case GEOFENCE_TOO_MANY_GEOFENCES:
-                    break;
-                case GEOFENCE_TOO_MANY_PENDING_INTENTS:
-                    break;
-            }
-        }
-        else {
-            Toast.makeText(this, "Geofence successfully added", Toast.LENGTH_SHORT);
-        }
     }
 
     private GeofencingRequest getGeofencingRequest() {
